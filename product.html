@@ -1,0 +1,3405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alberto Clocks - Luxury Timepieces</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --gold: #c9a227;
+            --dark: #050505;
+            --card: #0c0c0c;
+            --text: #ffffff;
+            --muted: #999999;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--dark);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        
+
+        .navbar {
+            background: #0b0b0b;
+            min-height: 75px;
+            padding: 0;
+            z-index: 9999;
+        }
+
+        .navbar .container {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-custom {
+            color: var(--gold) !important;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            margin-right: 7px;
+        }
+
+        .navbar-collapse {
+            flex-grow: 1;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link-custom {
+            color: #fff !important;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            margin: 0 4px;
+            padding: 8px 6px !important;
+            transition: color .3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-tools {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: 20px;
+            white-space: nowrap;
+            order: 3;
+        }
+
+        .visitor-counter {
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .eye-icon {
+            color: var(--gold);
+            margin-right: 4px;
+        }
+
+        .cart-counter {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .cart-open-btn {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        .cart-open-btn:hover {
+            color: #fff;
+        }
+
+        .cart-open-btn i {
+            margin-right: 4px;
+        }
+
+        @media (max-width: 991px) {
+
+            .navbar {
+                min-height: 75px;
+            }
+
+            .navbar .container {
+                min-height: 75px;
+            }
+
+            .navbar-tools {
+                margin-left: auto;
+                gap: 14px;
+            }
+
+            .navbar-collapse {
+                background: #0b0b0b;
+                padding: 15px 0;
+                margin-top: 10px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+                align-items: center;
+            }
+
+            .nav-link-custom {
+                padding: 12px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .visitor-counter {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .navbar-brand-custom {
+                font-size: 24px;
+            }
+
+            .cart-counter {
+                font-size: 11px;
+            }
+
+            .navbar-tools {
+                gap: 10px;
+            }
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 560px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+        }
+
+        .slide-iframe-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;
+            min-width: 177.78vh;
+            min-height: 100vh;
+            transform: translate(-50%, -50%);
+            border: 0;
+            pointer-events: none;
+        }
+
+        .slide::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg,
+                    rgba(5, 5, 5, 0.85),
+                    rgba(5, 5, 5, 0.25),
+                    rgba(5, 5, 5, 0.1));
+        }
+
+      
+
+        .products-intro {
+            background: #050505;
+            padding: 110px 20px 90px;
+            text-align: center;
+        }
+
+        .products-eyebrow,
+        .collection-eyebrow {
+            color: var(--gold);
+            font-size: 13px;
+            letter-spacing: 5px;
+            margin-bottom: 18px;
+        }
+
+        .products-heading {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(42px, 5vw, 64px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .products-heading span,
+        .collection-heading h2 span {
+            color: var(--gold);
+        }
+
+        .products-description,
+        .collection-description {
+            color: #bdbdbd;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 720px;
+            margin: auto;
+        }
+
+     
+
+        .collection-section {
+            background: #050505;
+            padding: 80px 5% 120px;
+        }
+
+        .collection-heading {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .collection-heading h2 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(44px, 5vw, 58px);
+            font-weight: 500;
+            margin-bottom: 22px;
+        }
+
+        .collection-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 55px auto 65px;
+            max-width: 900px;
+        }
+
+        .collection-divider span {
+            width: 100px;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.6;
+        }
+
+        .collection-divider p {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 18px;
+            font-style: italic;
+            letter-spacing: 1px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .collection-grid,
+        .watch-products {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px 25px;
+        }
+
+        .collection-card,
+        .product-card {
+            background: var(--card);
+            border: 1px solid rgba(201, 162, 39, 0.18);
+            overflow: hidden;
+            transition: transform 0.6s ease,
+                border-color 0.5s ease,
+                box-shadow 0.6s ease;
+        }
+
+        .collection-card:hover,
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(201, 162, 39, 0.8);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+        }
+
+     
+
+        .watch-card-image {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .watch-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .collection-card:hover .watch-card-image img {
+            transform: scale(1.05);
+        }
+
+      
+
+        .product-images {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .product-images img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.7s ease, transform 0.8s ease;
+        }
+
+        .product-img-one {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .product-img-two {
+            opacity: 0;
+            transform: scale(1.08);
+        }
+
+        .product-card:hover .product-img-one {
+            opacity: 0;
+            transform: scale(1.08);
+        }
+
+        .product-card:hover .product-img-two {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+
+        .watch-card-content,
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .watch-brand,
+        .product-brand {
+            display: block;
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .watch-card-content h3,
+        .product-info h3 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            transition: color 0.4s ease;
+        }
+
+        .collection-card:hover h3,
+        .product-card:hover h3 {
+            color: var(--gold);
+        }
+
+        .watch-card-content p,
+        .product-info p {
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            min-height: 48px;
+            margin-bottom: 15px;
+        }
+
+        .watch-price {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .watch-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .details-btn,
+        .cart-btn {
+            flex: 1;
+            padding: 12px 8px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .details-btn {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .details-btn:hover {
+            background: var(--gold);
+            color: #050505;
+            transform: translateY(-3px);
+        }
+
+        .cart-btn {
+            background: var(--gold);
+            color: #050505;
+            border: 1px solid var(--gold);
+        }
+
+        .cart-btn:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        
+
+        .brand-selector {
+            background: #050505;
+            padding: 90px 5% 60px;
+            text-align: center;
+        }
+
+        .brand-selector-title span {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 4px;
+        }
+
+        .brand-selector-title h2 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 45px;
+            margin: 10px 0 35px;
+        }
+
+        .brand-options {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .brand-options button {
+            min-width: 135px;
+            height: 65px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid rgba(201, 162, 39, 0.25);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .brand-options button:hover,
+        .brand-options button.active {
+            background: var(--gold);
+            color: #050505;
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .brand-symbol {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .brand-options button span:last-child {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+        }
+
+       
+
+        .brand-products {
+            background: #080808;
+            padding: 100px 5%;
+            min-height: 600px;
+        }
+
+        .products-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .products-heading span {
+            color: var(--gold);
+            font-size: 13px;
+            letter-spacing: 4px;
+        }
+
+        .products-heading h2 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 52px;
+            margin: 12px 0;
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .category-buttons button {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .category-buttons button:hover,
+        .category-buttons button.active {
+            background: var(--gold);
+            color: #050505;
+            transform: translateY(-4px);
+        }
+
+
+        .modal-content {
+            background: #0c0c0c;
+            color: #fff;
+            border: 1px solid rgba(201, 162, 39, 0.4);
+            border-radius: 0;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .modal-title {
+            font-family: "Cormorant Garamond", serif;
+            color: var(--gold);
+            font-size: 30px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-product-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .modal-product-images.single-modal-image {
+            grid-template-columns: 1fr;
+        }
+
+        .modal-product-images img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .modal-product-images.single-modal-image img {
+            max-width: 650px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .modal-product-info h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .modal-product-info .modal-price {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .modal-product-info p {
+            color: #aaa;
+            line-height: 1.7;
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-specs {
+            margin-top: 20px;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            padding-top: 15px;
+        }
+
+        .modal-specs p {
+            margin-bottom: 8px;
+        }
+
+        .modal-specs strong {
+            color: var(--gold);
+        }
+
+
+        .cart-modal-content {
+            background: #0c0c0c;
+            color: #fff;
+            border: 1px solid rgba(201, 162, 39, 0.4);
+            border-radius: 0;
+        }
+
+        .cart-modal-content .modal-header {
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .cart-modal-content .modal-title {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+        }
+
+        .cart-item-info h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            margin: 0 0 5px;
+        }
+
+        .cart-item-info p {
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-quantity button {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-quantity button:hover {
+            background: var(--gold);
+            color: #050505;
+        }
+
+        .cart-quantity span {
+            color: #fff;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-total {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .remove-cart {
+            background: transparent;
+            border: 0;
+            color: #999;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .remove-cart:hover {
+            color: var(--gold);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-cart i {
+            color: var(--gold);
+            font-size: 45px;
+        }
+
+        .empty-cart h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            margin-top: 15px;
+        }
+
+        .empty-cart p {
+            color: #999;
+        }
+
+        .cart-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(201, 162, 39, 0.25);
+        }
+
+        .cart-bottom div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-bottom div span {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .cart-bottom strong {
+            color: var(--gold);
+            font-size: 24px;
+        }
+
+        .clear-cart-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .clear-cart-btn:hover {
+            background: var(--gold);
+            color: #050505;
+        }
+
+       
+
+        .payment-section {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 162, 39, 0.25);
+        }
+
+        .payment-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .payment-title span {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .payment-title h3 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            margin-top: 8px;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .payment-option {
+            background: var(--card);
+            border: 1px solid rgba(201, 162, 39, 0.18);
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .payment-option:hover,
+        .payment-option.selected {
+            transform: translateY(-8px);
+            border-color: rgba(201, 162, 39, 0.8);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .payment-icon {
+            color: var(--gold);
+            font-size: 25px;
+            min-width: 30px;
+        }
+
+        .payment-option h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 21px;
+            margin: 0 0 5px;
+        }
+
+        .payment-option p {
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .payment-note {
+            margin-top: 20px;
+            text-align: center;
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        .payment-note i {
+            color: var(--gold);
+            margin-right: 5px;
+        }
+
+    
+
+        .footer {
+            background: #080808;
+            color: #aaa;
+            padding: 70px 0 20px;
+        }
+
+        .footer-brand {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+        }
+
+        .footer h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(201, 162, 39, 0.15);
+            margin-top: 45px;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+
+       
+
+        .ticker-bar {
+            background: #000;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            overflow: hidden;
+            height: 35px;
+        }
+
+        .ticker-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-scroll {
+            display: block;
+            width: 100%;
+        }
+
+       
+
+        #selectedBrand,
+        #brandTitle {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #selectedBrand.text-changing,
+        #brandTitle.text-changing {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .products-intro,
+        .collection-section,
+        .brand-selector,
+        .brand-products {
+            opacity: 0;
+            transform: translateY(80px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .products-intro.show,
+        .collection-section.show,
+        .brand-selector.show,
+        .brand-products.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .products-intro .products-eyebrow,
+        .products-intro .products-heading,
+        .products-intro .products-description {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .products-intro.show .products-eyebrow {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .products-intro.show .products-heading {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .products-intro.show .products-description {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.5s;
+        }
+
+        .collection-heading {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .collection-section.show .collection-heading {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .collection-divider {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition-delay: 0.2s;
+        }
+
+        .collection-section.show .collection-divider {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .collection-card {
+            opacity: 0;
+            transform: translateY(70px);
+            transition: opacity 0.8s ease,
+                transform 0.8s ease,
+                border-color 0.5s ease,
+                box-shadow 0.6s ease;
+        }
+
+        .collection-section.show .collection-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .collection-section.show .collection-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .collection-section.show .collection-card:nth-child(2) {
+            transition-delay: 0.25s;
+        }
+
+        .collection-section.show .collection-card:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        .collection-section.show .collection-card:nth-child(4) {
+            transition-delay: 0.55s;
+        }
+
+        .collection-section.show .collection-card:nth-child(5) {
+            transition-delay: 0.7s;
+        }
+
+        .collection-section.show .collection-card:nth-child(6) {
+            transition-delay: 0.85s;
+        }
+
+        .brand-selector-title,
+        .brand-options {
+            opacity: 0;
+            transform: translateY(45px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .brand-selector.show .brand-selector-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-selector.show .brand-options {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.25s;
+        }
+
+        .brand-products .products-heading {
+            opacity: 0;
+            transform: translateY(45px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .brand-products.show .products-heading {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-products .category-buttons {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .brand-products.show .category-buttons {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .product-card {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.7s ease,
+                transform 0.7s ease,
+                border-color 0.5s ease,
+                box-shadow 0.6s ease;
+        }
+
+        .brand-products.show .product-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+      
+
+        @media (max-width: 992px) {
+
+            .collection-grid,
+            .watch-products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .products-intro {
+                padding: 80px 20px 70px;
+            }
+
+            .collection-section {
+                padding: 60px 20px 80px;
+            }
+
+            .collection-grid,
+            .watch-products {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-divider {
+                gap: 10px;
+            }
+
+            .collection-divider span {
+                width: 40px;
+            }
+
+            .collection-divider p {
+                font-size: 14px;
+            }
+
+            .watch-card-image,
+            .product-images {
+                height: 280px;
+            }
+
+            .watch-buttons {
+                flex-direction: column;
+            }
+
+            .category-buttons {
+                flex-wrap: wrap;
+            }
+
+            .category-buttons button {
+                padding: 10px 20px;
+            }
+
+            .modal-product-images {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-product-images img {
+                height: 230px;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+            }
+
+            .cart-item-total {
+                grid-column: 1;
+            }
+
+            .remove-cart {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .cart-bottom {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            .cart-bottom div {
+                align-items: center;
+            }
+
+            .payment-title h3 {
+                font-size: 26px;
+            }
+        }
+       
+        .product-list-section {
+    background: #050505;
+    padding: 100px 5% 120px;
+    border-top: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.product-list-heading {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 70px;
+}
+
+.product-list-heading span {
+    color: var(--gold);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+.product-list-heading h2 {
+    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(42px, 5vw, 58px);
+    font-weight: 500;
+    margin: 12px 0 18px;
+}
+
+.product-list-heading h2 strong {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.product-list-heading p {
+    color: #999;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.product-list-container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.product-list-category {
+    margin-bottom: 75px;
+}
+
+.product-list-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.product-list-title span {
+    color: var(--gold);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.product-list-title h3 {
+    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.product-list-table {
+    border: 1px solid rgba(201, 162, 39, 0.18);
+    background: #0c0c0c;
+}
+
+.product-list-row {
+    display: grid;
+    grid-template-columns: 80px 1.2fr 1.5fr 150px;
+    align-items: center;
+    min-height: 58px;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.12);
+    transition: all 0.35s ease;
+}
+
+.product-list-row:last-child {
+    border-bottom: 0;
+}
+
+.product-list-row:not(.product-list-header):hover {
+    background: #111;
+    transform: translateX(6px);
+}
+
+.product-list-row div {
+    padding: 16px 20px;
+    color: #aaa;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+.product-list-row div:first-child {
+    color: var(--gold);
+}
+
+.product-list-row div:last-child {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.product-list-header {
+    background: #111;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.product-list-header div {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+
+    .product-list-section {
+        padding: 80px 20px;
+    }
+
+    .product-list-row {
+        grid-template-columns: 50px 1.2fr 1fr 100px;
+    }
+
+    .product-list-row div {
+        padding: 14px 10px;
+        font-size: 11px;
+    }
+
+    .product-list-title h3 {
+        font-size: 27px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .product-list-table {
+        overflow-x: auto;
+    }
+
+    .product-list-row {
+        min-width: 650px;
+    }
+
+    .product-list-heading {
+        margin-bottom: 50px;
+    }
+
+}
+.luxury-ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 38px;
+    z-index: 99999;
+    overflow: hidden;
+    background: #050505;
+    border-top: 1px solid #c9a227;
+    border-bottom: 1px solid #c9a227;
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+}
+
+.ticker-content {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    min-width: max-content;
+    gap: 28px;
+    padding-left: 100%;
+    animation: luxuryTicker 30s linear infinite;
+    color: #c9a227;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.ticker-content span {
+    display: inline-block;
+}
+
+@keyframes luxuryTicker {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .luxury-ticker {
+        height: 34px;
+    }
+
+    .ticker-content {
+        gap: 20px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        animation-duration: 24s;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+                <span class="logo-icon">&#9201;</span>
+                ALBERTO
+            </a>
+
+            <div class="navbar-tools">
+
+                <button type="button" class="cart-counter cart-open-btn" onclick="openCart()">
+
+                    <i class="bi bi-bag"></i>
+                    Cart:
+                    <span id="cartCount">0</span>
+
+                </button>
+
+                <span class="visitor-counter">
+
+                    <span class="eye-icon">&#128065;</span>
+                    Visitors:
+                    <span id="visitorCount">0</span>
+
+                </span>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+                    aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="navMain">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="product.html">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="technology.html">Technology</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="gallery.html">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="store-locator.html">Store Locator</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="support.html">Support</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="about.html">About</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+   
+
+    <section class="hero">
+
+        <div class="slide active">
+
+            <iframe class="slide-iframe-bg"
+                src="https://player.vimeo.com/video/39727354?h=228f703f9b&background=1&autoplay=1&loop=1&muted=1"
+                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </section>
+
+  
+
+    <section class="products-intro" id="productsIntro">
+
+        <p class="products-eyebrow">
+            ALBERTO WATCHES
+        </p>
+
+        <h2 class="products-heading">
+
+            Timeless Watches,
+            <span>Exceptional Craftsmanship</span>
+
+        </h2>
+
+        <p class="products-description">
+
+            Discover our exclusive collection of luxury timepieces,
+            where timeless design, precision, and elegance come together
+            to define every moment.
+
+        </p>
+
+    </section>
+
+   
+
+    <section class="collection-section" id="ourCollection">
+
+        <div class="collection-heading">
+
+            <p class="collection-eyebrow">
+                ALBERTO WATCHES
+            </p>
+
+            <h2>
+                Our <span>Collection</span>
+            </h2>
+
+            <p class="collection-description">
+
+                Explore the Alberto Watches collection, created with refined
+                design, elegant details and timeless character.
+
+            </p>
+
+        </div>
+
+        <div class="collection-divider">
+
+            <span></span>
+
+            <p>
+                Where timeless craftsmanship meets refined elegance.
+            </p>
+
+            <span></span>
+
+        </div>
+
+        <div class="collection-grid" id="albertoProducts">
+        </div>
+
+    </section>
+
+ 
+
+    <section class="brand-selector">
+
+        <div class="brand-selector-title">
+
+            <span>
+                EXPLORE BY BRAND
+            </span>
+
+            <h2>
+                Luxury Watch Houses
+            </h2>
+
+        </div>
+
+        <div class="brand-options">
+
+            <button onclick="showBrand('rolex', this)">
+                <span class="brand-symbol">♛</span>
+                <span>ROLEX</span>
+            </button>
+
+            <button onclick="showBrand('omega', this)">
+                <span class="brand-symbol">Ω</span>
+                <span>OMEGA</span>
+            </button>
+
+            <button onclick="showBrand('casio', this)">
+                <span class="brand-symbol">C</span>
+                <span>CASIO</span>
+            </button>
+
+            <button onclick="showBrand('cartier', this)">
+                <span class="brand-symbol">C</span>
+                <span>CARTIER</span>
+            </button>
+
+            <button onclick="showBrand('michael-kors', this)">
+                <span class="brand-symbol">MK</span>
+                <span>MICHAEL KORS</span>
+            </button>
+
+            <button onclick="showBrand('patek', this)">
+                <span class="brand-symbol">✦</span>
+                <span>PATEK PHILIPPE</span>
+            </button>
+
+            <button onclick="showBrand('citizen', this)">
+                <span class="brand-symbol">C</span>
+                <span>CITIZEN</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="brand-products" id="brandProducts">
+
+        <div class="products-heading">
+
+            <span id="selectedBrand">
+                ALL BRANDS
+            </span>
+
+            <h2 id="brandTitle">
+                Luxury Watch Collection
+            </h2>
+
+        </div>
+
+        <div class="category-buttons">
+
+            <button class="active" onclick="filterWatches('luxury')">
+                Luxury
+            </button>
+
+            <button onclick="filterWatches('vintage')">
+                Vintage
+            </button>
+
+            <button onclick="filterWatches('smart')">
+                Smart
+            </button>
+
+        </div>
+
+        <div class="watch-products" id="watchProducts">
+        </div>
+
+    </section>
+
+   
+
+    <div class="modal fade" id="productModal" tabindex="-1">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modalTitle">
+                        Watch Details
+                    </h5>
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body" id="modalBody">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+    <div class="modal fade" id="cartModal" tabindex="-1">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content cart-modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        <i class="bi bi-bag"></i>
+                        Your Cart
+
+                    </h5>
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div id="cartBody"></div>
+
+                    <div class="cart-bottom">
+
+                        <div>
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="cartTotal">
+                                $0
+                            </strong>
+
+                        </div>
+
+                        <button class="clear-cart-btn" onclick="clearCart()">
+                            Clear Cart
+                        </button>
+
+                    </div>
+
+                    <div class="payment-section">
+
+                        <div class="payment-title">
+
+                            <span>
+                                SECURE PAYMENT
+                            </span>
+
+                            <h3>
+                                Choose Your Payment Method
+                            </h3>
+
+                        </div>
+
+                        <div class="payment-options">
+
+                            <div class="payment-option" onclick="selectPayment(this)">
+
+                                <div class="payment-icon">
+                                    <i class="bi bi-credit-card"></i>
+                                </div>
+
+                                <div>
+
+                                    <h4>
+                                        Card Payment
+                                    </h4>
+
+                                    <p>
+                                        Pay securely using your debit or credit card.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="payment-option" onclick="selectPayment(this)">
+
+                                <div class="payment-icon">
+                                    <i class="bi bi-phone"></i>
+                                </div>
+
+                                <div>
+
+                                    <h4>
+                                        Online Payment
+                                    </h4>
+
+                                    <p>
+                                        Convenient online payment through available
+                                        digital payment methods.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="payment-option" onclick="selectPayment(this)">
+
+                                <div class="payment-icon">
+                                    <i class="bi bi-cash-stack"></i>
+                                </div>
+
+                                <div>
+
+                                    <h4>
+                                        Cash on Delivery
+                                    </h4>
+
+                                    <p>
+                                        Pay when your order is delivered to you.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <p class="payment-note">
+
+                            <i class="bi bi-shield-check"></i>
+
+                            Secure and convenient payment options available.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<section class="product-list-section">
+    <div class="container">
+        <div class="product-list-heading">
+            <span>ALBERTO WATCHES</span>
+            <h2>Complete Product List</h2>
+            <p>Explore our complete collection with prices in Pakistani Rupees.</p>
+        </div>
+
+        <div class="product-list-category">
+            <div class="product-list-title">
+                <span>01</span>
+                <h3>Alberto Watches</h3>
+            </div>
+
+            <div class="product-list-grid product-list-header">
+                <div>No.</div>
+                <div>Watch</div>
+                <div>Collection</div>
+                <div>Price</div>
+            </div>
+
+            <div class="product-list-grid product-list-row">
+                <div>01</div><div>Alberto Imperial</div><div>Alberto Luxury</div><div>Rs. 792,870</div>
+            </div>
+            <div class="product-list-grid product-list-row">
+                <div>02</div><div>Alberto Royale</div><div>Alberto Signature</div><div>Rs. 904,150</div>
+            </div>
+            <div class="product-list-grid product-list-row">
+                <div>03</div><div>Alberto Chronos</div><div>Alberto Chronograph</div><div>Rs. 1,071,070</div>
+            </div>
+            <div class="product-list-grid product-list-row">
+                <div>04</div><div>Alberto Rose Gold</div><div>Alberto Elegance</div><div>Rs. 820,690</div>
+            </div>
+            <div class="product-list-grid product-list-row">
+                <div>05</div><div>Alberto Heritage</div><div>Alberto Heritage</div><div>Rs. 959,790</div>
+            </div>
+            <div class="product-list-grid product-list-row">
+                <div>06</div><div>Alberto Vintage</div><div>Alberto Vintage</div><div>Rs. 765,050</div>
+            </div>
+        </div>
+
+        <div class="product-list-category">
+            <div class="product-list-title">
+                <span>02</span>
+                <h3>Luxury Collection</h3>
+            </div>
+
+            <div class="product-list-grid product-list-header">
+                <div>No.</div>
+                <div>Watch</div>
+                <div>Brand</div>
+                <div>Price</div>
+            </div>
+
+            <div class="product-list-grid product-list-row"><div>01</div><div>Rolex Prestige</div><div>Rolex</div><div>Rs. 2,364,700</div></div>
+            <div class="product-list-grid product-list-row"><div>02</div><div>Rolex Royal</div><div>Rolex</div><div>Rs. 2,573,350</div></div>
+            <div class="product-list-grid product-list-row"><div>03</div><div>Rolex Signature</div><div>Rolex</div><div>Rs. 2,211,690</div></div>
+            <div class="product-list-grid product-list-row"><div>04</div><div>Omega Prestige</div><div>Omega</div><div>Rs. 1,905,670</div></div>
+            <div class="product-list-grid product-list-row"><div>05</div><div>Omega Elite</div><div>Omega</div><div>Rs. 2,016,950</div></div>
+            <div class="product-list-grid product-list-row"><div>06</div><div>Omega Classic</div><div>Omega</div><div>Rs. 1,822,210</div></div>
+            <div class="product-list-grid product-list-row"><div>07</div><div>Casio Premium</div><div>Casio</div><div>Rs. 236,470</div></div>
+            <div class="product-list-grid product-list-row"><div>08</div><div>Casio Signature</div><div>Casio</div><div>Rs. 264,290</div></div>
+            <div class="product-list-grid product-list-row"><div>09</div><div>Casio Royal</div><div>Casio</div><div>Rs. 216,996</div></div>
+            <div class="product-list-grid product-list-row"><div>10</div><div>Cartier Elegance</div><div>Cartier</div><div>Rs. 2,183,870</div></div>
+            <div class="product-list-grid product-list-row"><div>11</div><div>Cartier Prestige</div><div>Cartier</div><div>Rs. 2,295,150</div></div>
+            <div class="product-list-grid product-list-row"><div>12</div><div>Cartier Classic</div><div>Cartier</div><div>Rs. 2,128,230</div></div>
+            <div class="product-list-grid product-list-row"><div>13</div><div>Michael Kors Rose</div><div>Michael Kors</div><div>Rs. 347,750</div></div>
+            <div class="product-list-grid product-list-row"><div>14</div><div>Michael Kors Elite</div><div>Michael Kors</div><div>Rs. 403,390</div></div>
+            <div class="product-list-grid product-list-row"><div>15</div><div>Michael Kors Signature</div><div>Michael Kors</div><div>Rs. 375,570</div></div>
+            <div class="product-list-grid product-list-row"><div>16</div><div>Patek Prestige</div><div>Patek Philippe</div><div>Rs. 3,477,500</div></div>
+            <div class="product-list-grid product-list-row"><div>17</div><div>Patek Royal</div><div>Patek Philippe</div><div>Rs. 3,964,350</div></div>
+            <div class="product-list-grid product-list-row"><div>18</div><div>Patek Classic</div><div>Patek Philippe</div><div>Rs. 3,324,490</div></div>
+            <div class="product-list-grid product-list-row"><div>19</div><div>Citizen Premium</div><div>Citizen</div><div>Rs. 319,930</div></div>
+            <div class="product-list-grid product-list-row"><div>20</div><div>Citizen Signature</div><div>Citizen</div><div>Rs. 375,570</div></div>
+            <div class="product-list-grid product-list-row"><div>21</div><div>Citizen Classic</div><div>Citizen</div><div>Rs. 292,110</div></div>
+            <div class="product-list-grid product-list-row"><div>22</div><div>Rolex Heritage</div><div>Rolex</div><div>Rs. 2,489,890</div></div>
+            <div class="product-list-grid product-list-row"><div>23</div><div>Omega Heritage</div><div>Omega</div><div>Rs. 1,933,490</div></div>
+            <div class="product-list-grid product-list-row"><div>24</div><div>Cartier Royal</div><div>Cartier</div><div>Rs. 2,406,430</div></div>
+            <div class="product-list-grid product-list-row"><div>25</div><div>Patek Signature</div><div>Patek Philippe</div><div>Rs. 3,825,250</div></div>
+        </div>
+
+        <div class="product-list-category">
+            <div class="product-list-title">
+                <span>03</span>
+                <h3>Vintage Collection</h3>
+            </div>
+
+            <div class="product-list-grid product-list-header">
+                <div>No.</div>
+                <div>Watch</div>
+                <div>Brand</div>
+                <div>Price</div>
+            </div>
+
+            <div class="product-list-grid product-list-row"><div>01</div><div>Rolex Heritage</div><div>Rolex</div><div>Rs. 1,905,670</div></div>
+            <div class="product-list-grid product-list-row"><div>02</div><div>Omega Vintage</div><div>Omega</div><div>Rs. 1,655,290</div></div>
+            <div class="product-list-grid product-list-row"><div>03</div><div>Casio Vintage</div><div>Casio</div><div>Rs. 180,830</div></div>
+            <div class="product-list-grid product-list-row"><div>04</div><div>Cartier Vintage</div><div>Cartier</div><div>Rs. 1,905,670</div></div>
+            <div class="product-list-grid product-list-row"><div>05</div><div>Michael Kors Vintage</div><div>Michael Kors</div><div>Rs. 292,110</div></div>
+            <div class="product-list-grid product-list-row"><div>06</div><div>Patek Vintage</div><div>Patek Philippe</div><div>Rs. 3,018,470</div></div>
+            <div class="product-list-grid product-list-row"><div>07</div><div>Citizen Vintage</div><div>Citizen</div><div>Rs. 236,470</div></div>
+        </div>
+
+        <div class="product-list-category">
+            <div class="product-list-title">
+                <span>04</span>
+                <h3>Smart Collection</h3>
+            </div>
+
+            <div class="product-list-grid product-list-header">
+                <div>No.</div>
+                <div>Watch</div>
+                <div>Brand</div>
+                <div>Price</div>
+            </div>
+
+            <div class="product-list-grid product-list-row"><div>01</div><div>Rolex Modern</div><div>Rolex</div><div>Rs. 2,489,890</div></div>
+            <div class="product-list-grid product-list-row"><div>02</div><div>Omega Modern</div><div>Omega</div><div>Rs. 1,933,490</div></div>
+            <div class="product-list-grid product-list-row"><div>03</div><div>Casio Smart</div><div>Casio</div><div>Rs. 292,110</div></div>
+            <div class="product-list-grid product-list-row"><div>04</div><div>Cartier Modern</div><div>Cartier</div><div>Rs. 2,239,510</div></div>
+            <div class="product-list-grid product-list-row"><div>05</div><div>Michael Kors Smart</div><div>Michael Kors</div><div>Rs. 431,210</div></div>
+            <div class="product-list-grid product-list-row"><div>06</div><div>Patek Modern</div><div>Patek Philippe</div><div>Rs. 3,755,700</div></div>
+            <div class="product-list-grid product-list-row"><div>07</div><div>Citizen Smart</div><div>Citizen</div><div>Rs. 403,390</div></div>
+        </div>
+    </div>
+</section>
+   
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="footer-brand mb-2">
+                        &#9201; ALBERTO
+                    </div>
+
+                    <p>
+                        Alberto Watch Company - offering the finest selection
+                        of luxury timepieces with first-class service since 1947.
+                    </p>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <h5>
+                        Quick Links
+                    </h5>
+
+                    <a href="index.html">Home</a>
+                    <a href="product.html">Products</a>
+                    <a href="technology.html">Technology</a>
+                    <a href="gallery.html">Gallery</a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h5>
+                        Company
+                    </h5>
+
+                    <a href="about.html">About Us</a>
+                    <a href="store-locator.html">Store Locator</a>
+                    <a href="support.html">Support</a>
+                    <a href="support.html">Contact Us</a>
+
+                </div>
+
+<div class="col-md-3">
+
+    <h5>
+        Contact
+    </h5>
+
+    <p style="font-size:0.9rem">
+
+        Dolmen Mall Clifton<br>
+        Karachi, Pakistan<br>
+
+        <a href="mailto:info@albertoclocks.com">
+            info@albertoclocks.com
+        </a>
+
+        +92 21 111 362 111
+
+    </p>
+
+    <p style="font-size:0.9rem; margin-top:15px;">
+
+        <strong style="color:#c9a227;">
+            Upcoming Event
+        </strong><br>
+
+        Alberto Luxury Watch Exhibition<br>
+        Dolmen Mall Clifton, Karachi<br>
+        Experience timeless luxury and discover our exclusive collection.
+
+    </p>
+
+</div>
+
+
+
+            <div class="footer-bottom">
+
+                &copy; 2026 Alberto Clocks. All rights reserved.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <div class="luxury-ticker">
+
+  <div class="ticker-content">
+
+    <span>ALBERTO WATCHES</span>
+    <span>•</span>
+
+    <span>TIME: <strong id="currentTime">--:--:--</strong></span>
+    <span>•</span>
+
+    <span>DATE: <strong id="currentDate">--/--/----</strong></span>
+    <span>•</span>
+
+    <span>TIMELESS LUXURY</span>
+    <span>•</span>
+
+    <span>DOLMEN MALL CLIFTON, KARACHI</span>
+    <span>•</span>
+
+    <span>UPCOMING LUXURY WATCH EXHIBITION</span>
+    <span>•</span>
+
+    <span>EXCEPTIONAL CRAFTSMANSHIP</span>
+    <span>•</span>
+
+    <span>ALBERTO WATCHES</span>
+    <span>•</span>
+
+  </div>
+
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        var cart = JSON.parse(
+            localStorage.getItem("watchCart")
+        ) || [];
+
+
+    
+
+        var albertoData = [
+
+            {
+                name: "Alberto Imperial",
+                image: "alberto.jpg",
+                price: "$2,850",
+                description: "Elegant luxury timepiece with refined finishing and sophisticated classic design.",
+                collection: "Alberto Luxury",
+                movement: "Precision Automatic",
+                case: "Stainless Steel"
+            },
+
+            {
+                name: "Alberto Royale",
+                image: "albertoroyal.jpg",
+                price: "$3,250",
+                description: "A sophisticated timepiece combining timeless proportions with modern luxury.",
+                collection: "Alberto Signature",
+                movement: "Automatic",
+                case: "Premium Steel"
+            },
+
+            {
+                name: "Alberto Chronos",
+                image: "albertochronos.jpg",
+                price: "$3,850",
+                description: "Precision-inspired design with a bold silhouette created for timeless sophistication.",
+                collection: "Alberto Chronograph",
+                movement: "Precision Chronograph",
+                case: "Stainless Steel"
+            },
+
+            {
+                name: "Alberto Rose Gold",
+                image: "albertorosegold.jpg",
+                price: "$2,950",
+                description: "Contemporary elegance with a refined rose-gold inspired finish and graceful design.",
+                collection: "Alberto Elegance",
+                movement: "Quartz Precision",
+                case: "Stainless Steel"
+            },
+
+            {
+                name: "Alberto Heritage",
+                image: "alberto5.jpg",
+                price: "$3,450",
+                description: "A timeless design inspired by traditional watchmaking and elegant proportions.",
+                collection: "Alberto Heritage",
+                movement: "Automatic",
+                case: "Classic Steel"
+            },
+
+            {
+                name: "Alberto Vintage",
+                image: "albertovintage.jpg",
+                price: "$2,750",
+                description: "Classic character meets refined detailing in this elegant vintage-inspired timepiece.",
+                collection: "Alberto Vintage",
+                movement: "Quartz",
+                case: "Polished Steel"
+            }
+
+        ];
+
+
+
+        var luxuryData = [
+
+            ["ROLEX", "Rolex Prestige", "rolexprestige.jpg", "rolex1.jpg", "$8,500", "Iconic luxury design with refined craftsmanship and timeless character.", "Automatic", "Premium Stainless Steel"],
+
+            ["ROLEX", "Rolex Royal", "rolexroyal.jpg", "rolex2.jpg", "$9,250", "Elegant proportions and sophisticated finishing for a distinguished look.", "Automatic", "Premium Steel"],
+
+            ["ROLEX", "Rolex Signature", "rolexsignature.jpg", "rolex3.jpg", "$7,950", "A premium timepiece created around precision, elegance and prestige.", "Precision Automatic", "Stainless Steel"],
+
+            ["OMEGA", "Omega Prestige", "OmegaPrestige.jpg", "prestige.jpg", "$6,850", "Swiss-inspired precision with a bold and sophisticated luxury appearance.", "Automatic", "Stainless Steel"],
+
+            ["OMEGA", "Omega Elite", "omegaelite.jpg", "omega2elite.jpg", "$7,250", "Refined detailing and contemporary elegance define this exceptional timepiece.", "Automatic", "Premium Steel"],
+
+            ["OMEGA", "Omega Classic", "omegaclassic.jpg", "omegaclassic2.jpg", "$6,550", "Timeless proportions combined with premium finishing and precision.", "Precision", "Stainless Steel"],
+
+            ["CASIO", "Casio Premium", "casiopremium.jpg", "casiopremium2.jpg", "$850", "Bold modern styling combined with dependable everyday performance.", "Quartz", "Stainless Steel"],
+
+            ["CASIO", "Casio Signature", "signaturecasio.jpg", "signaturecasio2.jpg", "$950", "Contemporary design with premium details and reliable performance.", "Quartz", "Premium Steel"],
+
+            ["CASIO", "Casio Royal", "casioroyal.jpg", "casio3royal.jpg", "$780", "Clean proportions and dependable technology in a refined design.", "Quartz", "Steel"],
+
+            ["CARTIER", "Cartier Elegance", "cartierelegence.jpg", "cartierelegence", "$7,850", "Refined French-inspired elegance with sophisticated luxury detailing.", "Automatic", "Premium Steel"],
+
+            ["CARTIER", "Cartier Prestige", "cartierprestige.jpg", "cartierprestige2.jpg", "$8,250", "Iconic styling paired with premium craftsmanship and elegant finishing.", "Automatic", "Stainless Steel"],
+
+            ["CARTIER", "Cartier Classic", "cartierclassic.jpg", "cartier3classic.jpg", "$7,650", "Timeless proportions and refined finishing create an elegant statement.", "Precision", "Premium Steel"],
+
+            ["MICHAEL KORS", "Michael Kors Rose", "mkrose1.png", "mkrose.jpg", "$1,250", "Contemporary luxury with sophisticated styling and elegant detailing.", "Quartz", "Stainless Steel"],
+
+            ["MICHAEL KORS", "Michael Kors Elite", "mkelite.jpg", "mkelite2.jpg", "$1,450", "Modern sophistication with premium details and contemporary character.", "Quartz", "Premium Steel"],
+
+            ["MICHAEL KORS", "Michael Kors Signature", "mksignature.jpg", "mksignature3.jpg", "$1,350", "Elegant everyday luxury with a polished and sophisticated appearance.", "Quartz", "Stainless Steel"],
+
+            ["PATEK PHILIPPE", "Patek Prestige", "pkprestige.jpg", "pkprestige1.jpg", "$12,500", "Exceptional craftsmanship and distinguished design for true luxury.", "Automatic", "Premium Steel"],
+
+            ["PATEK PHILIPPE", "Patek Royal", "pkroyal.jpg", "pkroyal2.jpg", "$14,250", "Refined finishing and timeless proportions express exceptional luxury.", "Automatic", "Stainless Steel"],
+
+            ["PATEK PHILIPPE", "Patek Classic", "pkclassic.jpg", "pkclassic3.jpg", "$11,950", "Elegant proportions and sophisticated craftsmanship with timeless appeal.", "Precision Automatic", "Premium Steel"],
+
+            ["CITIZEN", "Citizen Premium", "citizenpremium.jpg", "citizenpremium1.jpg", "$1,150", "Japanese-inspired precision combined with elegant contemporary design.", "Precision", "Stainless Steel"],
+
+            ["CITIZEN", "Citizen Signature ladies", "citizensignature.jpeg", "citizensignature2.jpeg", "$1,350", "Refined craftsmanship and contemporary styling for a sophisticated look.", "Automatic", "Premium Steel"],
+
+            ["CITIZEN", "Citizen Classic", "citizenclassic.jpg", "citizenclassic3.jpg", "$1,050", "Clean proportions and timeless elegance with reliable precision.", "Quartz", "Stainless Steel"],
+
+            ["ROLEX", "Rolex Heritage", "rolexheritage.jpg", "rolexheritage1.jpg", "$8,950", "Traditional luxury character with refined finishing and timeless proportions.", "Automatic", "Premium Steel"],
+
+            ["OMEGA", "Omega Heritage", "omegaheritage.jpg", "omegaheritage2.jpg", "$6,950", "Elegant heritage-inspired styling with a sophisticated luxury presence.", "Automatic", "Stainless Steel"],
+
+            ["CARTIER", "Cartier Royal", "cartierroyal.jpg", "cartierroyal3.jpg", "$8,650", "Elegant luxury design with refined details and distinguished character.", "Automatic", "Premium Steel"],
+
+            ["PATEK PHILIPPE", "Patek Signature", "pksignature.jpg", "pksignature4.jpg", "$13,750", "A sophisticated expression of traditional craftsmanship and luxury.", "Automatic", "Stainless Steel"]
+
+        ];
+
+
+     
+
+        var categoryData = {
+
+            vintage: [
+
+                ["ROLEX", "Rolex Heritage", "rolexvintage.jpg", "rolexvintage2.jpg", "$6,850", "Classic-inspired luxury with enduring character.", "Automatic", "Classic Steel"],
+
+                ["OMEGA", "Omega Vintage", "omegavintage.jpg", "omegavintage2.jpg", "$5,950", "Classic character inspired by traditional watchmaking.", "Automatic", "Polished Steel"],
+
+                ["CASIO", "Casio Vintage", "casiovintage.jpg", "casiovintage2.jpg", "$650", "Retro-inspired design with timeless character.", "Quartz", "Steel"],
+
+                ["CARTIER", "Cartier Vintage", "cartiervintage.jpg", "cartiervintage2.jpg", "$6,850", "Elegant vintage character with classic detailing.", "Automatic", "Premium Steel"],
+
+                ["MICHAEL KORS", "Michael Kors Vintage", "mkvintage.jpg", "mkvintage2.jpg", "$1,050", "Classic-inspired design with elegant character.", "Quartz", "Steel"],
+
+                ["PATEK PHILIPPE", "Patek Vintage", "patekvintage.jpg", "patekvintage2.jpg", "$10,850", "Classic heritage-inspired luxury with timeless appeal.", "Automatic", "Premium Steel"],
+
+                ["CITIZEN", "Citizen Vintage", "vintagecitizen2.jpg", "citizenvintage.jpg", "$850", "Classic styling with traditional character.", "Quartz", "Steel"]
+
+            ],
+
+            smart: [
+
+                ["ROLEX", "Rolex Modern", "rolexsmart.jpg", "rolexsmart2.jpg", "$8,950", "Modern luxury design with contemporary character.", "Automatic", "Premium Steel"],
+
+                ["OMEGA", "Omega Modern", "omegasmart.jpg", "omegasmart2.jpg", "$6,950", "Modern timepiece design with contemporary character.", "Automatic", "Steel"],
+
+                ["CASIO", "Casio Smart", "casiosmart.jpg", "casiosmart2.jpg", "$1,050", "Modern technology-inspired styling with practical design.", "Quartz", "Steel"],
+
+                ["CARTIER", "Cartier Modern", "cartiersmart.jpg", "cartiersmart2.jpg", "$8,050", "Contemporary luxury with sophisticated styling.", "Automatic", "Premium Steel"],
+
+                ["MICHAEL KORS", "Michael Kors Smart", "mksmart.jpg", "mksmart2.jpg", "$1,550", "Modern luxury styling with contemporary design.", "Quartz", "Steel"],
+
+                ["PATEK PHILIPPE", "Patek Modern", "pateksmart.jpg", "pateksmart2.jpg", "$13,500", "Modern interpretation of sophisticated luxury.", "Automatic", "Premium Steel"],
+
+                ["CITIZEN", "Citizen Smart", "citizensmart.jpg", "citizensmart2.jpg", "$1,450", "Modern functionality with elegant design.", "Precision", "Steel"]
+
+            ]
+
+        };
+
+
+       
+
+        var brandNames = {
+
+            rolex: "ROLEX",
+            omega: "OMEGA",
+            casio: "CASIO",
+            cartier: "CARTIER",
+            "michael-kors": "MICHAEL KORS",
+            patek: "PATEK PHILIPPE",
+            citizen: "CITIZEN"
+
+        };
+
+        var currentBrand = "";
+
+
+        
+
+        function updateCartCount() {
+
+            var savedCart =
+                JSON.parse(
+                    localStorage.getItem("watchCart")
+                ) || [];
+
+            var count = 0;
+
+            savedCart.forEach(function (item) {
+
+                count += Number(item.quantity) || 1;
+
+            });
+
+            var cartElement =
+                document.getElementById("cartCount");
+
+            if (cartElement) {
+
+                cartElement.textContent = count;
+
+            }
+
+        }
+
+
+        
+
+        function addToCart(name, price) {
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            localStorage.setItem(
+                "watchCart",
+                JSON.stringify(cart)
+            );
+
+            updateCartCount();
+
+            alert(
+                name + " has been added to your cart!"
+            );
+
+        }
+
+
+
+        function openCart() {
+
+            renderCart();
+
+            var cartElement =
+                document.getElementById("cartModal");
+
+            var cartModal =
+                bootstrap.Modal.getOrCreateInstance(
+                    cartElement
+                );
+
+            cartModal.show();
+
+        }
+
+
+      
+
+        function renderCart() {
+
+            var cartBody =
+                document.getElementById("cartBody");
+
+            var cartTotal =
+                document.getElementById("cartTotal");
+
+            var cartBottom =
+                document.querySelector(".cart-bottom");
+
+            var paymentSection =
+                document.querySelector(".payment-section");
+
+
+            if (cart.length === 0) {
+
+                cartBody.innerHTML = `
+
+                    <div class="empty-cart">
+
+                        <i class="bi bi-bag"></i>
+
+                        <h4>
+                            Your Cart Is Empty
+                        </h4>
+
+                        <p>
+                            Add your favorite watch to your cart.
+                        </p>
+
+                    </div>
+
+                `;
+
+                cartTotal.textContent = "$0";
+
+                cartBottom.style.display = "none";
+                paymentSection.style.display = "none";
+
+                return;
+
+            }
+
+
+            cartBottom.style.display = "flex";
+            paymentSection.style.display = "block";
+
+            cartBody.innerHTML = "";
+
+            var groupedCart = [];
+
+
+            cart.forEach(function (item) {
+
+                var existing =
+                    groupedCart.find(function (product) {
+
+                        return product.name === item.name;
+
+                    });
+
+
+                if (existing) {
+
+                    existing.quantity++;
+
+                } else {
+
+                    groupedCart.push({
+
+                        name: item.name,
+                        price: item.price,
+                        quantity: 1
+
+                    });
+
+                }
+
+            });
+
+
+            var total = 0;
+
+
+            groupedCart.forEach(function (item) {
+
+                var priceNumber =
+                    parseFloat(
+                        String(item.price)
+                            .replace(/[^0-9.]/g, "")
+                    );
+
+
+                var itemTotal =
+                    priceNumber * item.quantity;
+
+
+                total += itemTotal;
+
+
+                cartBody.innerHTML += `
+
+                    <div class="cart-item">
+
+                        <div class="cart-item-info">
+
+                            <h4>
+                                ${item.name}
+                            </h4>
+
+                            <p>
+                                ${item.price}
+                            </p>
+
+                        </div>
+
+
+                        <div class="cart-quantity">
+
+                            <button
+                                onclick="decreaseCartItem('${item.name}')">
+
+                                −
+
+                            </button>
+
+                            <span>
+                                ${item.quantity}
+                            </span>
+
+                            <button
+                                onclick="increaseCartItem('${item.name}', '${item.price}')">
+
+                                +
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="cart-item-total">
+
+                            $${itemTotal.toLocaleString()}
+
+                        </div>
+
+
+                        <button
+                            class="remove-cart"
+                            onclick="removeCartItem('${item.name}')">
+
+                            <i class="bi bi-x-lg"></i>
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            cartTotal.textContent =
+                "$" + total.toLocaleString();
+
+        }
+
+
+
+        function increaseCartItem(name, price) {
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            localStorage.setItem(
+                "watchCart",
+                JSON.stringify(cart)
+            );
+
+            updateCartCount();
+
+            renderCart();
+
+        }
+
+
+      
+
+        function decreaseCartItem(name) {
+
+            for (
+                var i = cart.length - 1;
+                i >= 0;
+                i--
+            ) {
+
+                if (cart[i].name === name) {
+
+                    cart.splice(i, 1);
+
+                    break;
+
+                }
+
+            }
+
+
+            localStorage.setItem(
+                "watchCart",
+                JSON.stringify(cart)
+            );
+
+            updateCartCount();
+
+            renderCart();
+
+        }
+
+
+     
+
+        function removeCartItem(name) {
+
+            cart =
+                cart.filter(function (item) {
+
+                    return item.name !== name;
+
+                });
+
+
+            localStorage.setItem(
+                "watchCart",
+                JSON.stringify(cart)
+            );
+
+            updateCartCount();
+
+            renderCart();
+
+        }
+
+
+
+        function clearCart() {
+
+            cart = [];
+
+            localStorage.setItem(
+                "watchCart",
+                JSON.stringify(cart)
+            );
+
+            updateCartCount();
+
+            renderCart();
+
+        }
+
+
+
+        function selectPayment(option) {
+
+            document.querySelectorAll(
+                ".payment-option"
+            ).forEach(function (item) {
+
+                item.classList.remove("selected");
+
+            });
+
+            option.classList.add("selected");
+
+        }
+
+
+       
+
+        function showDetails(
+            name,
+            image1,
+            image2,
+            price,
+            description,
+            brand,
+            category,
+            movement,
+            caseType
+        ) {
+
+            document.getElementById(
+                "modalTitle"
+            ).textContent = name;
+
+
+            var imagesHTML = "";
+
+
+            if (image2 === "") {
+
+                imagesHTML = `
+
+                    <div class="modal-product-images single-modal-image">
+
+                        <img
+                            src="${image1}"
+                            alt="${name}">
+
+                    </div>
+
+                `;
+
+            } else {
+
+                imagesHTML = `
+
+                    <div class="modal-product-images">
+
+                        <img
+                            src="${image1}"
+                            alt="${name}">
+
+                        <img
+                            src="${image2}"
+                            alt="${name}">
+
+                    </div>
+
+                `;
+
+            }
+
+
+            document.getElementById(
+                "modalBody"
+            ).innerHTML = `
+
+                ${imagesHTML}
+
+                <div class="modal-product-info">
+
+                    <h3>
+                        ${name}
+                    </h3>
+
+                    <div class="modal-price">
+                        ${price}
+                    </div>
+
+                    <p>
+                        ${description}
+                    </p>
+
+
+                    <div class="modal-specs">
+
+                        <p>
+                            <strong>Brand:</strong>
+                            ${brand}
+                        </p>
+
+                        <p>
+                            <strong>Category:</strong>
+                            ${category}
+                        </p>
+
+                        <p>
+                            <strong>Movement:</strong>
+                            ${movement}
+                        </p>
+
+                        <p>
+                            <strong>Case:</strong>
+                            ${caseType}
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="cart-btn w-100 mt-3"
+                        onclick="addToCart('${name}', '${price}')">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            var modal =
+                bootstrap.Modal.getOrCreateInstance(
+                    document.getElementById("productModal")
+                );
+
+            modal.show();
+
+        }
+
+
+     
+
+        function renderAlberto() {
+
+            var container =
+                document.getElementById(
+                    "albertoProducts"
+                );
+
+            container.innerHTML = "";
+
+
+            albertoData.forEach(function (item) {
+
+                container.innerHTML += `
+
+                    <div class="collection-card">
+
+                        <div class="watch-card-image">
+
+                            <img
+                                src="${item.image}"
+                                alt="${item.name}">
+
+                        </div>
+
+
+                        <div class="watch-card-content">
+
+                            <div class="watch-brand">
+                                ALBERTO WATCHES
+                            </div>
+
+                            <h3>
+                                ${item.name}
+                            </h3>
+
+                            <p>
+                                ${item.description}
+                            </p>
+
+                            <div class="watch-price">
+                                ${item.price}
+                            </div>
+
+
+                            <div class="watch-buttons">
+
+                                <button
+                                    class="details-btn"
+                                    onclick="showDetails(
+                                        '${item.name}',
+                                        '${item.image}',
+                                        '',
+                                        '${item.price}',
+                                        '${item.description}',
+                                        'ALBERTO WATCHES',
+                                        '${item.collection}',
+                                        '${item.movement}',
+                                        '${item.case}'
+                                    )">
+
+                                    View Details
+
+                                </button>
+
+
+                                <button
+                                    class="cart-btn"
+                                    onclick="addToCart(
+                                        '${item.name}',
+                                        '${item.price}'
+                                    )">
+
+                                    Add to Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+    
+
+        function renderProducts(data, category) {
+
+            var products =
+                document.getElementById(
+                    "watchProducts"
+                );
+
+            products.innerHTML = "";
+
+
+            if (data.length === 0) {
+
+                products.innerHTML = `
+
+                    <div style="
+                        grid-column:1/-1;
+                        text-align:center;
+                        color:#999;
+                        padding:60px 20px;
+                        font-family:Arial,sans-serif;
+                    ">
+
+                        No watches available for this category.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            data.forEach(function (item) {
+
+                products.innerHTML += `
+
+                    <div class="product-card">
+
+                        <div class="product-images">
+
+                            <img
+                                src="${item[2]}"
+                                class="product-img-one"
+                                alt="${item[1]}">
+
+                            <img
+                                src="${item[3]}"
+                                class="product-img-two"
+                                alt="${item[1]}">
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <span class="product-brand">
+                                ${item[0]}
+                            </span>
+
+                            <h3>
+                                ${item[1]}
+                            </h3>
+
+                            <p>
+                                ${item[5]}
+                            </p>
+
+                            <div class="watch-price">
+                                ${item[4]}
+                            </div>
+
+
+                            <div class="watch-buttons">
+
+                                <button
+                                    class="details-btn"
+                                    onclick="showDetails(
+                                        '${item[1]}',
+                                        '${item[2]}',
+                                        '${item[3]}',
+                                        '${item[4]}',
+                                        '${item[5]}',
+                                        '${item[0]}',
+                                        '${category}',
+                                        '${item[6]}',
+                                        '${item[7]}'
+                                    )">
+
+                                    View Details
+
+                                </button>
+
+
+                                <button
+                                    class="cart-btn"
+                                    onclick="addToCart(
+                                        '${item[1]}',
+                                        '${item[4]}'
+                                    )">
+
+                                    Add to Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+       
+
+        function showBrand(
+            brand,
+            selectedButton
+        ) {
+
+            document.querySelectorAll(
+                ".brand-options button"
+            ).forEach(function (button) {
+
+                button.classList.remove("active");
+
+            });
+
+
+            selectedButton.classList.add("active");
+
+            currentBrand = brand;
+
+
+            var selectedBrand =
+                document.getElementById(
+                    "selectedBrand"
+                );
+
+            var brandTitle =
+                document.getElementById(
+                    "brandTitle"
+                );
+
+
+            selectedBrand.classList.add(
+                "text-changing"
+            );
+
+            brandTitle.classList.add(
+                "text-changing"
+            );
+
+
+            setTimeout(function () {
+
+                selectedBrand.textContent =
+                    brandNames[brand];
+
+                brandTitle.textContent =
+                    brandNames[brand] +
+                    " Collection";
+
+
+                selectedBrand.classList.remove(
+                    "text-changing"
+                );
+
+                brandTitle.classList.remove(
+                    "text-changing"
+                );
+
+            }, 250);
+
+
+            filterWatches("luxury");
+
+
+            setTimeout(function () {
+
+                document.getElementById(
+                    "brandProducts"
+                ).scrollIntoView({
+
+                    behavior: "smooth",
+                    block: "start"
+
+                });
+
+            }, 100);
+
+        }
+
+
+      
+
+        function filterWatches(category) {
+
+            var buttons =
+                document.querySelectorAll(
+                    ".category-buttons button"
+                );
+
+
+            buttons.forEach(function (button) {
+
+                button.classList.remove("active");
+
+            });
+
+
+            if (category === "luxury") {
+                buttons[0].classList.add("active");
+            }
+
+            if (category === "vintage") {
+                buttons[1].classList.add("active");
+            }
+
+            if (category === "smart") {
+                buttons[2].classList.add("active");
+            }
+
+
+            var data = [];
+
+
+            if (category === "luxury") {
+                data = luxuryData.slice();
+            }
+
+            if (category === "vintage") {
+                data = categoryData.vintage.slice();
+            }
+
+            if (category === "smart") {
+                data = categoryData.smart.slice();
+            }
+
+
+            if (currentBrand !== "") {
+
+                var selectedBrandName =
+                    brandNames[currentBrand];
+
+
+                data = data.filter(
+                    function (item) {
+
+                        return item[0] ===
+                            selectedBrandName;
+
+                    }
+                );
+
+            }
+
+
+            renderProducts(
+                data,
+                category
+            );
+
+        }
+
+
+        
+        var visitors =
+            localStorage.getItem("visitorCount");
+
+        if (visitors === null) {
+
+            visitors = 1;
+
+        } else {
+
+            visitors = Number(visitors) + 1;
+
+        }
+
+        localStorage.setItem(
+            "visitorCount",
+            visitors
+        );
+
+        var visitorElement =
+            document.getElementById(
+                "visitorCount"
+            );
+
+        if (visitorElement) {
+
+            visitorElement.textContent =
+                visitors;
+
+        }
+
+
+       
+        updateCartCount();
+
+
+        var currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+        if (currentPage === "") {
+
+            currentPage = "index.html";
+
+        }
+
+
+        var navLinks =
+            document.querySelectorAll(
+                ".nav-link-custom"
+            );
+
+
+        navLinks.forEach(function (link) {
+
+            var linkPage =
+                link.getAttribute("href");
+
+            if (linkPage === currentPage) {
+
+                link.classList.add("active");
+
+            }
+
+        });
+
+
+
+        renderAlberto();
+
+        filterWatches("luxury");
+
+
+       
+
+        var productsIntro =
+            document.getElementById(
+                "productsIntro"
+            );
+
+        var collectionSection =
+            document.getElementById(
+                "ourCollection"
+            );
+
+        var brandSelector =
+            document.querySelector(
+                ".brand-selector"
+            );
+
+        var brandProducts =
+            document.getElementById(
+                "brandProducts"
+            );
+
+
+        function revealSections() {
+
+            var screenPosition =
+                window.innerHeight - 120;
+
+
+            if (
+                productsIntro.getBoundingClientRect().top <
+                screenPosition
+            ) {
+
+                productsIntro.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            if (
+                collectionSection.getBoundingClientRect().top <
+                screenPosition
+            ) {
+
+                collectionSection.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            if (
+                brandSelector.getBoundingClientRect().top <
+                screenPosition
+            ) {
+
+                brandSelector.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            if (
+                brandProducts.getBoundingClientRect().top <
+                screenPosition
+            ) {
+
+                brandProducts.classList.add(
+                    "show"
+                );
+
+            }
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            revealSections
+        );
+
+        window.addEventListener(
+            "load",
+            revealSections
+        );
+
+
+        setTimeout(function () {
+
+            revealSections();
+
+        }, 300);
+
+
+       
+
+        window.addEventListener(
+            "storage",
+            function (event) {
+
+                if (event.key === "watchCart") {
+
+                    cart =
+                        JSON.parse(
+                            event.newValue
+                        ) || [];
+
+                    updateCartCount();
+
+                }
+
+            }
+        );
+
+
+        renderCart();
+function updateDateTime() {
+
+  var now = new Date();
+
+  var timeElement = document.getElementById("currentTime");
+  var dateElement = document.getElementById("currentDate");
+
+  if (timeElement) {
+
+    timeElement.textContent = now.toLocaleTimeString(
+      "en-PK",
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      }
+    );
+
+  }
+
+  if (dateElement) {
+
+    dateElement.textContent = now.toLocaleDateString(
+      "en-PK",
+      {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      }
+    );
+
+  }
+
+}
+
+updateDateTime();
+
+setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+
+</html>

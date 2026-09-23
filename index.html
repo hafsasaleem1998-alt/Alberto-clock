@@ -1,0 +1,3309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alberto Clocks - Luxury Timepieces</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --gold: #c9a227;
+            --dark: #050505;
+            --dark-soft: #080808;
+            --card: #0c0c0c;
+            --green: #0d2119;
+            --green-light: #12382d;
+            --white: #ffffff;
+            --muted: #999999;
+            --light-muted: #bdbdbd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--white);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+
+        .navbar {
+            background: #0b0b0b;
+            min-height: 75px;
+            padding: 0;
+            z-index: 9999;
+        }
+
+        .navbar .container {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-custom {
+            color: var(--gold) !important;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            margin-right: 7px;
+        }
+
+        .navbar-collapse {
+            flex-grow: 1;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link-custom {
+            color: #fff !important;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            margin: 0 4px;
+            padding: 8px 6px !important;
+            transition: color .3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-tools {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: 20px;
+            white-space: nowrap;
+            order: 3;
+        }
+
+        .visitor-counter {
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .eye-icon {
+            color: var(--gold);
+            margin-right: 4px;
+        }
+
+        .cart-counter {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .cart-open-btn {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        .cart-open-btn:hover {
+            color: #fff;
+        }
+
+        .cart-open-btn i {
+            margin-right: 4px;
+        }
+
+
+        @media (max-width: 991px) {
+
+            .navbar {
+                min-height: 75px;
+            }
+
+            .navbar .container {
+                min-height: 75px;
+            }
+
+            .navbar-tools {
+                margin-left: auto;
+                gap: 14px;
+            }
+
+            .navbar-collapse {
+                background: #0b0b0b;
+                padding: 15px 0;
+                margin-top: 10px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+                align-items: center;
+            }
+
+            .nav-link-custom {
+                padding: 12px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .visitor-counter {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand-custom {
+                font-size: 24px;
+            }
+
+            .cart-counter {
+                font-size: 11px;
+            }
+
+            .navbar-tools {
+                gap: 10px;
+            }
+        }
+
+
+
+
+        .cart-modal-content {
+            background: #0c0c0c;
+            color: #fff;
+            border: 1px solid rgba(201, 162, 39, .4);
+            border-radius: 0;
+        }
+
+        .cart-modal-content .modal-header {
+            border-bottom: 1px solid rgba(201, 162, 39, .2);
+        }
+
+        .cart-modal-content .modal-title {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+        }
+
+        .cart-modal-content .modal-body {
+            padding: 25px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(201, 162, 39, .15);
+        }
+
+        .cart-item-info h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            margin: 0 0 5px;
+        }
+
+        .cart-item-info p {
+            color: var(--gold);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-quantity button {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .cart-quantity button:hover {
+            background: var(--gold);
+            color: #050505;
+        }
+
+        .cart-quantity span {
+            color: #fff;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-total {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .remove-cart {
+            background: transparent;
+            border: 0;
+            color: #999;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .remove-cart:hover {
+            color: var(--gold);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .empty-cart i {
+            color: var(--gold);
+            font-size: 45px;
+        }
+
+        .empty-cart h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            margin-top: 15px;
+        }
+
+        .empty-cart p {
+            color: #999;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(201, 162, 39, .25);
+        }
+
+        .cart-bottom div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-bottom div span {
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .cart-bottom strong {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+
+        .clear-cart-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .clear-cart-btn:hover {
+            background: var(--gold);
+            color: #050505;
+        }
+
+
+
+        .payment-section {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 162, 39, .25);
+        }
+
+        .payment-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .payment-title span {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .payment-title h3 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            margin-top: 8px;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .payment-option {
+            position: relative;
+            background: var(--card);
+            border: 1px solid rgba(201, 162, 39, 0.18);
+            overflow: hidden;
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            cursor: pointer;
+            transition: transform 0.6s ease,
+                border-color 0.5s ease,
+                box-shadow 0.6s ease;
+        }
+
+        .payment-option:hover {
+            transform: translateY(-10px);
+            border-color: rgba(201, 162, 39, 0.8);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .payment-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .payment-option.selected {
+            transform: translateY(-10px);
+            border-color: rgba(201, 162, 39, 0.8);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .payment-icon {
+            color: var(--gold);
+            font-size: 25px;
+            min-width: 30px;
+            margin-top: 2px;
+        }
+
+        .payment-option h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 21px;
+            font-weight: 500;
+            margin: 0 0 8px;
+        }
+
+        .payment-option p {
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .payment-note {
+            margin-top: 20px;
+            text-align: center;
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        .payment-note i {
+            color: var(--gold);
+            margin-right: 5px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px 20px;
+            background: var(--gold);
+            color: #050505;
+            border: 1px solid var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .checkout-btn:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 560px;
+            overflow: hidden;
+            background: #050505;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.03);
+            transition: opacity 1400ms ease-in-out,
+                transform 1400ms ease-in-out;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .slide-iframe-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 177.78vh;
+            height: 100vh;
+            min-width: 100vw;
+            min-height: 56.25vw;
+            transform: translate(-50%, -50%);
+            border: 0;
+            display: block;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg,
+                    rgba(5, 5, 5, .90),
+                    rgba(5, 5, 5, .45),
+                    rgba(5, 5, 5, .12));
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 8vw 9vh;
+            max-width: 700px;
+            pointer-events: auto;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        .headline {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(42px, 5vw, 64px);
+            font-weight: 500;
+            line-height: 1.08;
+            margin-bottom: 20px;
+        }
+
+        .sub {
+            color: #bdbdbd;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .cta {
+            display: inline-block;
+            background: var(--gold);
+            color: #050505;
+            border: 1px solid var(--gold);
+            padding: 13px 32px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all .4s ease;
+        }
+
+        .cta:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: 0 0 25px rgba(201, 162, 39, .22);
+            transform: translateY(-3px);
+        }
+
+
+
+        .brown-watch-section {
+            min-height: 65vh;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 10%;
+            overflow: hidden;
+        }
+
+        .brown-watch-content {
+            width: 100%;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(90px);
+            transition: opacity 1.2s ease,
+                transform 1.2s ease;
+        }
+
+        .brown-watch-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brown-watch-label,
+        .straps-label {
+            display: block;
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 5px;
+            margin-bottom: 18px;
+        }
+
+        .brown-watch-content h2 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 62px;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .brown-watch-content p {
+            color: #aaa;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.9;
+            margin: auto;
+            max-width: 700px;
+        }
+
+
+        .watch-showcase {
+            min-height: 90vh;
+            background: #080808;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 90px 4%;
+            overflow: hidden;
+        }
+
+        .watch-image {
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .watch-image img {
+            width: 570px;
+            height: 430px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(201, 162, 39, .45);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .8),
+                0 0 30px rgba(201, 162, 39, .12);
+        }
+
+        .watch-content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .watch-video {
+            width: 580px;
+            height: 330px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 162, 39, .55);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .8),
+                0 0 35px rgba(201, 162, 39, .12);
+            margin-bottom: 35px;
+        }
+
+        .watch-video video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .watch-description {
+            max-width: 580px;
+        }
+
+        .watch-description h2 {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 48px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .watch-description p {
+            color: #aaa;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .explore-btn,
+        .straps-btn {
+            display: inline-block;
+            padding: 13px 30px;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: all .4s ease;
+        }
+
+        .explore-btn:hover,
+        .straps-btn:hover {
+            background: var(--gold);
+            color: #050505;
+            box-shadow: 0 0 25px rgba(201, 162, 39, .22);
+            transform: translateY(-3px);
+        }
+
+        .reveal-image,
+        .reveal-video,
+        .reveal-description {
+            opacity: 0;
+            transition: opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .reveal-image {
+            transform: translateX(-100px);
+        }
+
+        .reveal-video {
+            transform: translateX(100px);
+        }
+
+        .reveal-description {
+            transform: translateY(50px);
+        }
+
+        .reveal-image.show,
+        .reveal-video.show,
+        .reveal-description.show {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+
+
+        .two-watch-images {
+            width: 100%;
+            min-height: 90vh;
+            background: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 100px 5%;
+            overflow: hidden;
+        }
+
+        .watch-pic {
+            width: 570px;
+            height: 430px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 162, 39, .55);
+            background: #0c0c0c;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .8),
+                0 0 35px rgba(201, 162, 39, .12);
+        }
+
+        .watch-pic img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .watch-pic:hover img {
+            transform: scale(1.04);
+        }
+
+        .left-pic {
+            opacity: 0;
+            transform: translateX(-150px);
+            transition: opacity 1.2s ease,
+                transform 1.2s ease;
+        }
+
+        .right-pic {
+            margin-top: -70px;
+            opacity: 0;
+            transform: translateX(150px);
+            transition: opacity 1.2s ease,
+                transform 1.2s ease;
+        }
+
+        .left-pic.show,
+        .right-pic.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+
+        .alberto-straps {
+            min-height: 80vh;
+            background: #0c0c0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 10%;
+            overflow: hidden;
+            text-align: center;
+            border-top: 1px solid rgba(201, 162, 39, .12);
+            border-bottom: 1px solid rgba(201, 162, 39, .12);
+        }
+
+        .straps-content {
+            max-width: 800px;
+            margin: auto;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 1.2s ease,
+                transform 1.2s ease;
+        }
+
+        .straps-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .straps-content h2 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 64px;
+            font-weight: 500;
+            line-height: 1.05;
+            margin-bottom: 30px;
+        }
+
+        .straps-content p {
+            color: #aaa;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.9;
+            max-width: 650px;
+            margin: 0 auto 35px;
+        }
+
+
+        .section {
+            background: #080808;
+            color: #fff;
+            padding: 90px 0;
+            opacity: 0;
+            transform: translateY(70px);
+            transition: opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .section.section-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            color: #fff !important;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 52px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--gold) !important;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-align: center;
+        }
+
+        .divider-gold {
+            width: 80px;
+            height: 1px;
+            background: var(--gold);
+            margin: 25px auto 45px;
+        }
+
+        .section .container.reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .section .container.reveal.section-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-box,
+        .testimonial-card {
+            height: 100%;
+            padding: 35px 25px;
+            background: #0c0c0c;
+            border: 1px solid rgba(201, 162, 39, .22);
+            transition:
+                opacity .8s ease,
+                transform .8s ease,
+                border-color .4s ease,
+                box-shadow .4s ease;
+        }
+
+        .feature-box.card-show,
+        .testimonial-card.card-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-box:hover,
+        .testimonial-card:hover {
+            border-color: rgba(201, 162, 39, .8);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, .5),
+                0 0 20px rgba(201, 162, 39, .08);
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            color: var(--gold);
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h4,
+        .testimonial-card h5 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .feature-box h4 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p,
+        .testimonial-text {
+            color: #999;
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-card h5 {
+            font-size: 23px;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-card span {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .stars {
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+
+        .luxury-final {
+            background: #0c0c0c !important;
+            color: #fff !important;
+            text-align: center;
+            border-top: 1px solid rgba(201, 162, 39, .15);
+        }
+
+        .luxury-final h2 {
+            color: #fff !important;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 52px;
+            margin-bottom: 18px;
+        }
+
+        .luxury-final p {
+            color: #aaa !important;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #050505;
+            border: 1px solid var(--gold);
+            padding: 13px 30px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: all .4s ease;
+        }
+
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--gold);
+            border-color: var(--gold);
+            box-shadow: 0 0 25px rgba(201, 162, 39, .22);
+            transform: translateY(-3px);
+        }
+
+
+
+        .footer {
+            background: #080808;
+            color: #999;
+            padding: 70px 0 20px;
+            border-top: 1px solid rgba(201, 162, 39, .15);
+        }
+
+        .footer-brand {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            color: #888;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer a {
+            display: block;
+            color: #888;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: 10px;
+            transition: color .3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(201, 162, 39, .15);
+            margin-top: 45px;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+
+        .ticker-bar {
+            background: #000;
+            border-top: 1px solid rgba(201, 162, 39, .2);
+            overflow: hidden;
+            height: 35px;
+        }
+
+        .ticker-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-scroll {
+            display: block;
+            width: 100%;
+        }
+
+
+
+        @media (max-width: 1100px) {
+
+            .watch-showcase {
+                gap: 20px;
+                padding: 80px 3%;
+            }
+
+            .watch-image img {
+                width: 100%;
+                height: 380px;
+            }
+
+            .watch-video {
+                width: 100%;
+                height: 300px;
+            }
+
+            .watch-pic {
+                width: 47%;
+            }
+
+        }
+
+        @media (max-width: 991px) {
+
+            .navbar-collapse {
+                background: #0b0b0b;
+                padding: 15px 0;
+                margin-top: 10px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .nav-link-custom {
+                padding: 12px !important;
+            }
+
+            .navbar-tools {
+                margin-left: auto;
+                margin-right: 12px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .cart-counter {
+                font-size: 12px;
+            }
+
+            .slide-content {
+                padding: 0 6vw 12vh;
+            }
+
+            .headline {
+                font-size: 42px;
+            }
+
+            .watch-showcase {
+                flex-direction: column;
+                gap: 45px;
+                padding: 60px 25px;
+            }
+
+            .watch-image,
+            .watch-content {
+                width: 100%;
+            }
+
+            .watch-image {
+                justify-content: center;
+            }
+
+            .watch-image img {
+                width: 100%;
+                height: 350px;
+            }
+
+            .watch-video {
+                width: 100%;
+                height: 280px;
+            }
+
+            .watch-description h2 {
+                font-size: 40px;
+            }
+
+            .two-watch-images {
+                min-height: auto;
+                flex-direction: column;
+                gap: 40px;
+                padding: 70px 25px;
+            }
+
+            .watch-pic {
+                width: 100%;
+                height: 350px;
+            }
+
+            .right-pic {
+                margin-top: 0;
+            }
+
+            .straps-content h2 {
+                font-size: 45px;
+            }
+
+            .brown-watch-content h2 {
+                font-size: 45px;
+            }
+
+            .section-title,
+            .luxury-final h2 {
+                font-size: 42px;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .cart-item {
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+            }
+
+            .cart-item-total {
+                grid-column: 1;
+            }
+
+            .remove-cart {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .cart-bottom {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            .cart-bottom div {
+                align-items: center;
+            }
+
+            .cart-modal-content .modal-body {
+                padding: 18px;
+            }
+
+            .visitor-counter {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .watch-pic {
+                height: 300px;
+            }
+
+            .straps-content h2 {
+                font-size: 38px;
+            }
+
+            .brown-watch-content h2 {
+                font-size: 40px;
+            }
+
+            .navbar-brand-custom {
+                font-size: 24px;
+            }
+
+            .cart-counter {
+                font-size: 11px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .slide,
+            .reveal-image,
+            .reveal-video,
+            .reveal-description,
+            .brown-watch-content,
+            .straps-content,
+            .left-pic,
+            .right-pic,
+            .section,
+            .feature-box,
+            .testimonial-card {
+                transition: none;
+            }
+
+        }
+
+        .luxury-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 38px;
+            z-index: 99999;
+            overflow: hidden;
+            background: #050505;
+            border-top: 1px solid #c9a227;
+            border-bottom: 1px solid #c9a227;
+            box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+        }
+
+        .ticker-content {
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+            min-width: max-content;
+            gap: 28px;
+            padding-left: 100%;
+            animation: luxuryTicker 30s linear infinite;
+            color: #c9a227;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .ticker-content span {
+            display: inline-block;
+        }
+
+        @keyframes luxuryTicker {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxury-ticker {
+                height: 34px;
+            }
+
+            .ticker-content {
+                gap: 20px;
+                font-size: 10px;
+                letter-spacing: 1.5px;
+                animation-duration: 24s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+
+
+
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+
+                <span class="logo-icon">&#9201;</span>
+                ALBERTO
+
+            </a>
+
+
+
+
+            <div class="navbar-tools">
+
+                <button type="button" class="cart-counter cart-open-btn" onclick="openCart()">
+
+                    <i class="bi bi-bag"></i>
+                    Cart:
+                    <span id="cartCount">0</span>
+
+                </button>
+
+
+                <span class="visitor-counter">
+
+                    <span class="eye-icon">&#128065;</span>
+                    Visitors:
+                    <span id="visitorCount">0</span>
+
+                </span>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+                    aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+            </div>
+
+
+
+
+            <div class="collapse navbar-collapse" id="navMain">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="product.html">
+                            Products
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="technology.html">
+                            Technology
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="gallery.html">
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="store-locator.html">
+                            Store Locator
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="support.html">
+                            Support
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="about.html">
+                            About
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+
+
+
+    <section class="hero">
+
+        <div class="slide active">
+
+            <iframe class="slide-iframe-bg"
+                src="https://player.vimeo.com/video/39727354?h=228f703f9b&background=1&autoplay=1&loop=1&muted=1"
+                title="Alberto Watches Luxury Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+            </iframe>
+
+
+            <div class="slide-content">
+
+                <p class="eyebrow">
+                    ALBERTO WATCHES
+                </p>
+
+
+                <h1 class="headline">
+                    A World of Luxury Watches, Under One Roof
+                </h1>
+
+
+                <p class="sub">
+                    Explore into a world of craftsmanship, heritage,
+                    and precision engineering.
+                </p>
+
+
+                <a class="cta" href="product.html">
+
+                    Discover
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="brown-watch-section">
+
+        <div class="brown-watch-content">
+
+            <span class="brown-watch-label">
+                ALBERTO COLLECTION
+            </span>
+
+
+            <h2>
+                Heritage in Brown
+            </h2>
+
+
+            <p>
+                Presented in refined sizes, this timeless Alberto collection
+                combines rich brown tones with sophisticated detailing and
+                elegant finishes. Designed for those who appreciate classic
+                luxury with a modern touch.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="watch-showcase" id="watchShowcase">
+
+
+        <div class="watch-image reveal-image">
+
+            <img src="Omega Speedmaster.jpg" alt="Luxury Watch">
+
+        </div>
+
+
+        <div class="watch-content">
+
+            <div class="watch-video reveal-video">
+
+                <video autoplay muted loop playsinline>
+
+                    <source src="omega.mp4" type="video/mp4">
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+            </div>
+
+
+            <div class="watch-description reveal-description">
+
+                <h2>
+                    Timeless Luxury
+                </h2>
+
+
+                <p>
+                    Discover a world of exceptional craftsmanship,
+                    timeless design, and precision. Every Alberto watch
+                    represents elegance, heritage, and luxury made to last.
+                </p>
+
+
+                <a href="product.html" class="explore-btn">
+
+                    Explore More
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="alberto-straps">
+
+        <div class="straps-content">
+
+            <span class="straps-label">
+                WATCH STRAPS
+            </span>
+
+
+            <h2>
+
+                CRAFTED FOR <br>
+                EVERY WRIST
+
+            </h2>
+
+
+            <p>
+
+                MADE BY HAND FOR EVERY KIND OF WRIST.
+                Switching out your strap is a fast and easy way to give
+                your Alberto a personal makeover. You can fix a strap to
+                suit the season, the occasion - or even your ever-changing
+                moods. Start your search now and discover the playful side
+                of Swiss precision.
+
+            </p>
+
+
+            <a href="product.html" class="straps-btn">
+
+                EXPLORE COLLECTION
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="two-watch-images">
+
+
+        <div class="watch-pic left-pic">
+
+            <img src="pkroyal2.jpg" alt="Patek Philippe Luxury Watch">
+
+        </div>
+
+
+        <div class="watch-pic right-pic">
+
+            <img src="download(4).jpg" alt="Rolex Luxury Watch">
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="section">
+
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                Why Choose Alberto?
+            </h2>
+
+
+            <p class="section-subtitle reveal">
+                The Alberto Difference
+            </p>
+
+
+            <div class="divider-gold"></div>
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-6 col-lg-3 reveal">
+
+                    <div class="feature-box">
+
+                        <div class="feature-icon">
+
+                            <i class="bi bi-patch-check"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Authentic Luxury
+                        </h4>
+
+
+                        <p>
+                            Every timepiece is selected with care,
+                            ensuring exceptional quality and authenticity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 col-lg-3 reveal">
+
+                    <div class="feature-box">
+
+                        <div class="feature-icon">
+
+                            <i class="bi bi-tools"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Expert Craftsmanship
+                        </h4>
+
+
+                        <p>
+                            Precision, heritage, and expert knowledge
+                            come together in every service we provide.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 col-lg-3 reveal">
+
+                    <div class="feature-box">
+
+                        <div class="feature-icon">
+
+                            <i class="bi bi-gem"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Premium Service
+                        </h4>
+
+
+                        <p>
+                            From selection to aftercare, we provide
+                            a first-class luxury experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 col-lg-3 reveal">
+
+                    <div class="feature-box">
+
+                        <div class="feature-icon">
+
+                            <i class="bi bi-award"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Trusted Heritage
+                        </h4>
+
+
+                        <p>
+                            A legacy built on trust, passion, and
+                            timeless excellence in watchmaking.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="section testimonials-section">
+
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                What Our Clients Say
+            </h2>
+
+
+            <p class="section-subtitle reveal">
+                Trusted by Watch Enthusiasts
+            </p>
+
+
+            <div class="divider-gold"></div>
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-4 reveal">
+
+                    <div class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+
+                        <p class="testimonial-text">
+
+                            "An exceptional experience from start to finish.
+                            The collection is beautiful and the service feels
+                            truly personal and professional."
+
+                        </p>
+
+
+                        <h5>
+                            James Wilson
+                        </h5>
+
+
+                        <span>
+                            Luxury Watch Collector
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 reveal">
+
+                    <div class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+
+                        <p class="testimonial-text">
+
+                            "Alberto made finding my perfect timepiece an
+                            unforgettable experience. Their attention to detail
+                            and expertise is outstanding."
+
+                        </p>
+
+
+                        <h5>
+                            Michael Anderson
+                        </h5>
+
+
+                        <span>
+                            Verified Customer
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 reveal">
+
+                    <div class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+
+                        <p class="testimonial-text">
+
+                            "The quality, professionalism, and customer service
+                            exceeded all expectations. A truly premium watch
+                            shopping experience."
+
+                        </p>
+
+
+                        <h5>
+                            David Miller
+                        </h5>
+
+
+                        <span>
+                            Watch Enthusiast
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="section luxury-final">
+
+        <div class="container">
+
+            <h2>
+                Time is the Ultimate Luxury
+            </h2>
+
+
+            <p>
+                Visit our stores to experience the Alberto difference.
+                Expert appraisal, professional repair, and an unmatched selection.
+            </p>
+
+
+            <a href="store-locator.html" class="btn btn-gold">
+
+                Find a Store
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+
+    <div class="modal fade" id="cartModal" tabindex="-1">
+
+
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+
+
+            <div class="modal-content cart-modal-content">
+
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        <i class="bi bi-bag"></i>
+                        Your Cart
+
+                    </h5>
+
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <div id="cartBody"></div>
+
+
+                    <div class="cart-bottom">
+
+                        <div>
+
+                            <span>
+                                Total
+                            </span>
+
+
+                            <strong id="cartTotal">
+                                $0
+                            </strong>
+
+                        </div>
+
+
+                        <button type="button" class="clear-cart-btn" onclick="clearCart()">
+
+                            Clear Cart
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="payment-section">
+
+
+                        <div class="payment-title">
+
+                            <span>
+                                SECURE CHECKOUT
+                            </span>
+
+
+                            <h3>
+                                Payment Options
+                            </h3>
+
+                        </div>
+
+
+                        <div class="payment-options">
+
+
+                            <label class="payment-option">
+
+                                <input type="radio" name="paymentMethod" value="Card Payment">
+
+
+                                <i class="bi bi-credit-card payment-icon"></i>
+
+
+                                <div>
+
+                                    <h4>
+                                        Card Payment
+                                    </h4>
+
+
+                                    <p>
+                                        Pay using your debit or credit card.
+                                    </p>
+
+                                </div>
+
+                            </label>
+
+
+                            <label class="payment-option">
+
+                                <input type="radio" name="paymentMethod" value="Online Payment">
+
+
+                                <i class="bi bi-phone payment-icon"></i>
+
+
+                                <div>
+
+                                    <h4>
+                                        Online Payment
+                                    </h4>
+
+
+                                    <p>
+                                        Choose an available digital payment method.
+                                    </p>
+
+                                </div>
+
+                            </label>
+
+
+                            <label class="payment-option">
+
+                                <input type="radio" name="paymentMethod" value="Cash on Delivery">
+
+
+                                <i class="bi bi-cash-stack payment-icon"></i>
+
+
+                                <div>
+
+                                    <h4>
+                                        Cash on Delivery
+                                    </h4>
+
+
+                                    <p>
+                                        Pay when your order is delivered.
+                                    </p>
+
+                                </div>
+
+                            </label>
+
+
+                        </div>
+
+
+                        <div class="payment-note">
+
+                            <i class="bi bi-shield-check"></i>
+
+                            Please select your preferred payment method.
+
+                        </div>
+
+
+                        <button type="button" class="checkout-btn" onclick="proceedToCheckout()">
+
+                            PROCEED TO CHECKOUT
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row">
+
+
+                <div class="col-md-4">
+
+                    <div class="footer-brand mb-2">
+
+                        &#9201; ALBERTO
+
+                    </div>
+
+
+                    <p>
+
+                        Alberto Watch Company - offering the finest selection
+                        of luxury timepieces with first-class service since 1947.
+
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-2">
+
+                    <h5>
+                        Quick Links
+                    </h5>
+
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="product.html">
+                        Products
+                    </a>
+
+                    <a href="technology.html">
+                        Technology
+                    </a>
+
+                    <a href="gallery.html">
+                        Gallery
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <h5>
+                        Company
+                    </h5>
+
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="store-locator.html">
+                        Store Locator
+                    </a>
+
+                    <a href="support.html">
+                        Support
+                    </a>
+
+                    <a href="support.html">
+                        Contact Us
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <h5>
+                        Contact
+                    </h5>
+
+                    <p style="font-size:0.9rem">
+
+                        Dolmen Mall Clifton<br>
+                        Karachi, Pakistan<br>
+
+                        <a href="mailto:info@albertoclocks.com">
+                            info@albertoclocks.com
+                        </a>
+
+                        +92 21 111 362 111
+
+                    </p>
+
+                    <p style="font-size:0.9rem; margin-top:15px;">
+
+                        <strong style="color:#c9a227;">
+                            Upcoming Event
+                        </strong><br>
+
+                        Alberto Luxury Watch Exhibition<br>
+                        Dolmen Mall Clifton, Karachi<br>
+                        Experience timeless luxury and discover our exclusive collection.
+
+                    </p>
+
+                </div>
+
+
+                <div class="footer-bottom">
+
+                    &copy; 2026 Alberto Clocks. All rights reserved.
+
+                </div>
+
+            </div>
+
+    </footer>
+
+
+    <div class="luxury-ticker">
+
+        <div class="ticker-content">
+
+            <span>ALBERTO WATCHES</span>
+            <span>•</span>
+
+            <span>TIME: <strong id="currentTime">--:--:--</strong></span>
+            <span>•</span>
+
+            <span>DATE: <strong id="currentDate">--/--/----</strong></span>
+            <span>•</span>
+
+            <span>TIMELESS LUXURY</span>
+            <span>•</span>
+
+            <span>DOLMEN MALL CLIFTON, KARACHI</span>
+            <span>•</span>
+
+            <span>UPCOMING LUXURY WATCH EXHIBITION</span>
+            <span>•</span>
+
+            <span>EXCEPTIONAL CRAFTSMANSHIP</span>
+            <span>•</span>
+
+            <span>ALBERTO WATCHES</span>
+            <span>•</span>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        var siteCart =
+            JSON.parse(
+                localStorage.getItem("watchCart")
+            ) || [];
+
+
+
+
+        siteCart = siteCart.map(function (item) {
+
+            return {
+
+                name: item.name || "Alberto Watch",
+
+                price: item.price || "$0",
+
+                quantity: Number(item.quantity) || 1
+
+            };
+
+        });
+
+
+        saveCart();
+
+
+
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "watchCart",
+                JSON.stringify(siteCart)
+            );
+
+        }
+
+
+
+
+        function updateHomeCartCount() {
+
+            var count = 0;
+
+
+            siteCart.forEach(function (item) {
+
+                count +=
+                    Number(item.quantity) || 0;
+
+            });
+
+
+            var cartCount =
+                document.getElementById(
+                    "homeCartCount"
+                );
+
+
+            if (cartCount) {
+
+                cartCount.textContent =
+                    count;
+
+            }
+
+        }
+
+
+
+
+        function getPriceNumber(price) {
+
+            return parseFloat(
+                String(price).replace(
+                    /[^0-9.]/g,
+                    ""
+                )
+            ) || 0;
+
+        }
+
+
+
+        function openCart() {
+
+            renderCart();
+
+
+            var cartModalElement =
+                document.getElementById(
+                    "cartModal"
+                );
+
+
+            var modal =
+                bootstrap.Modal.getOrCreateInstance(
+                    cartModalElement
+                );
+
+
+            modal.show();
+
+        }
+
+
+
+        function renderCart() {
+
+            var cartBody =
+                document.getElementById(
+                    "cartBody"
+                );
+
+
+            var cartTotal =
+                document.getElementById(
+                    "cartTotal"
+                );
+
+
+            if (!cartBody || !cartTotal) {
+
+                return;
+
+            }
+
+
+
+
+            if (siteCart.length === 0) {
+
+                cartBody.innerHTML = `
+
+            <div class="empty-cart">
+
+                <i class="bi bi-bag"></i>
+
+                <h4>
+                    Your Cart is Empty
+                </h4>
+
+                <p>
+                    Add your favorite Alberto
+                    timepieces to your cart.
+                </p>
+
+            </div>
+
+        `;
+
+
+                cartTotal.textContent =
+                    "$0";
+
+
+                return;
+
+            }
+
+
+            var html = "";
+
+            var total = 0;
+
+
+            siteCart.forEach(
+                function (item, index) {
+
+
+                    var priceNumber =
+                        getPriceNumber(
+                            item.price
+                        );
+
+
+                    var itemTotal =
+                        priceNumber *
+                        Number(item.quantity);
+
+
+                    total += itemTotal;
+
+
+                    html += `
+
+                <div class="cart-item">
+
+                    <div class="cart-item-info">
+
+                        <h4>
+                            ${item.name}
+                        </h4>
+
+                        <p>
+                            ${item.price}
+                        </p>
+
+                    </div>
+
+
+                    <div class="cart-quantity">
+
+                        <button
+                            type="button"
+                            onclick="decreaseCartItem(${index})">
+
+                            −
+
+                        </button>
+
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+
+                        <button
+                            type="button"
+                            onclick="increaseCartItem(${index})">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="cart-item-total">
+
+                        $${itemTotal.toLocaleString()}
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="remove-cart"
+                        onclick="removeCartItem(${index})">
+
+                        <i class="bi bi-x-lg"></i>
+
+                    </button>
+
+                </div>
+
+            `;
+
+                }
+            );
+
+
+            cartBody.innerHTML =
+                html;
+
+
+            cartTotal.textContent =
+                "$" + total.toLocaleString();
+
+        }
+
+
+
+
+        function increaseCartItem(index) {
+
+            if (!siteCart[index]) {
+
+                return;
+
+            }
+
+
+            siteCart[index].quantity =
+                Number(
+                    siteCart[index].quantity
+                ) + 1;
+
+
+            saveCart();
+
+            updateHomeCartCount();
+
+            renderCart();
+
+        }
+
+
+
+
+        function decreaseCartItem(index) {
+
+            if (!siteCart[index]) {
+
+                return;
+
+            }
+
+
+            if (
+                Number(siteCart[index].quantity) > 1
+            ) {
+
+                siteCart[index].quantity--;
+
+            } else {
+
+                siteCart.splice(
+                    index,
+                    1
+                );
+
+            }
+
+
+            saveCart();
+
+            updateHomeCartCount();
+
+            renderCart();
+
+        }
+
+
+
+        function removeCartItem(index) {
+
+            if (!siteCart[index]) {
+
+                return;
+
+            }
+
+
+            siteCart.splice(
+                index,
+                1
+            );
+
+
+            saveCart();
+
+            updateHomeCartCount();
+
+            renderCart();
+
+        }
+
+
+
+
+        function clearCart() {
+
+            if (siteCart.length === 0) {
+
+                return;
+
+            }
+
+
+            var confirmClear =
+                confirm(
+                    "Are you sure you want to clear your cart?"
+                );
+
+
+            if (!confirmClear) {
+
+                return;
+
+            }
+
+
+            siteCart = [];
+
+
+            saveCart();
+
+            updateHomeCartCount();
+
+            renderCart();
+
+        }
+
+
+
+        document.addEventListener(
+            "change",
+            function (event) {
+
+
+                if (
+                    event.target.matches(
+                        'input[name="paymentMethod"]'
+                    )
+                ) {
+
+
+                    var options =
+                        document.querySelectorAll(
+                            ".payment-option"
+                        );
+
+
+                    options.forEach(
+                        function (option) {
+
+                            option.classList.remove(
+                                "selected"
+                            );
+
+                        }
+                    );
+
+
+                    var selectedOption =
+                        event.target.closest(
+                            ".payment-option"
+                        );
+
+
+                    if (selectedOption) {
+
+                        selectedOption.classList.add(
+                            "selected"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+
+
+        function proceedToCheckout() {
+
+
+
+
+            if (siteCart.length === 0) {
+
+                alert(
+                    "Your cart is empty. Please add a watch first."
+                );
+
+                return;
+
+            }
+
+
+
+
+            var selectedPayment =
+                document.querySelector(
+                    'input[name="paymentMethod"]:checked'
+                );
+
+
+            if (!selectedPayment) {
+
+                alert(
+                    "Please select a payment method."
+                );
+
+                return;
+
+            }
+
+
+
+
+            alert(
+                "Your order has been placed successfully!"
+            );
+
+
+
+
+            siteCart = [];
+
+
+            saveCart();
+
+            updateHomeCartCount();
+
+            renderCart();
+
+
+
+
+            var cartModalElement =
+                document.getElementById(
+                    "cartModal"
+                );
+
+
+            var modal =
+                bootstrap.Modal.getInstance(
+                    cartModalElement
+                );
+
+
+            if (modal) {
+
+                modal.hide();
+
+            }
+
+
+
+
+            var paymentOptions =
+                document.querySelectorAll(
+                    'input[name="paymentMethod"]'
+                );
+
+
+            paymentOptions.forEach(
+                function (option) {
+
+                    option.checked = false;
+
+                }
+            );
+
+
+            var selectedBoxes =
+                document.querySelectorAll(
+                    ".payment-option.selected"
+                );
+
+
+            selectedBoxes.forEach(
+                function (box) {
+
+                    box.classList.remove(
+                        "selected"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+
+        var visitors =
+            localStorage.getItem(
+                "visitorCount"
+            );
+
+
+        if (visitors === null) {
+
+            visitors = 1;
+
+        } else {
+
+            visitors =
+                Number(visitors) + 1;
+
+        }
+
+
+        localStorage.setItem(
+            "visitorCount",
+            visitors
+        );
+
+
+        var visitorElement =
+            document.getElementById(
+                "visitorCount"
+            );
+
+
+        if (visitorElement) {
+
+            visitorElement.textContent =
+                visitors;
+
+        }
+
+
+
+
+        updateHomeCartCount();
+
+
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+
+
+                var images =
+                    document.querySelectorAll(
+                        ".reveal-image, .reveal-video, .reveal-description"
+                    );
+
+
+                var observer =
+                    new IntersectionObserver(
+                        function (entries) {
+
+
+                            entries.forEach(
+                                function (entry) {
+
+
+                                    if (
+                                        entry.isIntersecting
+                                    ) {
+
+                                        entry.target.classList.add(
+                                            "show"
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                        },
+                        {
+                            threshold: 0.2
+                        }
+                    );
+
+
+                images.forEach(
+                    function (element) {
+
+                        observer.observe(
+                            element
+                        );
+
+                    }
+                );
+
+
+
+
+                var pictures =
+                    document.querySelectorAll(
+                        ".left-pic, .right-pic"
+                    );
+
+
+                var pictureObserver =
+                    new IntersectionObserver(
+                        function (entries) {
+
+
+                            entries.forEach(
+                                function (entry) {
+
+
+                                    if (
+                                        entry.isIntersecting
+                                    ) {
+
+                                        entry.target.classList.add(
+                                            "show"
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                        },
+                        {
+                            threshold: 0.2
+                        }
+                    );
+
+
+                pictures.forEach(
+                    function (picture) {
+
+                        pictureObserver.observe(
+                            picture
+                        );
+
+                    }
+                );
+
+
+
+
+                var strapsContent =
+                    document.querySelector(
+                        ".straps-content"
+                    );
+
+
+                if (strapsContent) {
+
+
+                    var strapsObserver =
+                        new IntersectionObserver(
+                            function (entries) {
+
+
+                                entries.forEach(
+                                    function (entry) {
+
+
+                                        if (
+                                            entry.isIntersecting
+                                        ) {
+
+                                            entry.target.classList.add(
+                                                "show"
+                                            );
+
+                                        }
+
+                                    }
+                                );
+
+                            },
+                            {
+                                threshold: 0.2
+                            }
+                        );
+
+
+                    strapsObserver.observe(
+                        strapsContent
+                    );
+
+                }
+
+
+
+
+                var brownContent =
+                    document.querySelector(
+                        ".brown-watch-content"
+                    );
+
+
+                if (brownContent) {
+
+
+                    var brownObserver =
+                        new IntersectionObserver(
+                            function (entries) {
+
+
+                                entries.forEach(
+                                    function (entry) {
+
+
+                                        if (
+                                            entry.isIntersecting
+                                        ) {
+
+                                            entry.target.classList.add(
+                                                "show"
+                                            );
+
+                                        }
+
+                                    }
+                                );
+
+                            },
+                            {
+                                threshold: 0.2
+                            }
+                        );
+
+
+                    brownObserver.observe(
+                        brownContent
+                    );
+
+                }
+
+
+
+
+                var sections =
+                    document.querySelectorAll(
+                        ".section"
+                    );
+
+
+                var cards =
+                    document.querySelectorAll(
+                        ".feature-box, .testimonial-card"
+                    );
+
+
+                var reveals =
+                    document.querySelectorAll(
+                        ".section .reveal"
+                    );
+
+
+                var sectionObserver =
+                    new IntersectionObserver(
+                        function (entries) {
+
+
+                            entries.forEach(
+                                function (entry) {
+
+
+                                    if (
+                                        entry.isIntersecting
+                                    ) {
+
+                                        entry.target.classList.add(
+                                            "section-show"
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                        },
+                        {
+                            threshold: 0.15
+                        }
+                    );
+
+
+                sections.forEach(
+                    function (section) {
+
+                        sectionObserver.observe(
+                            section
+                        );
+
+                    }
+                );
+
+
+                var cardObserver =
+                    new IntersectionObserver(
+                        function (entries) {
+
+
+                            entries.forEach(
+                                function (entry) {
+
+
+                                    if (
+                                        entry.isIntersecting
+                                    ) {
+
+                                        entry.target.classList.add(
+                                            "card-show"
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                        },
+                        {
+                            threshold: 0.15
+                        }
+                    );
+
+
+                cards.forEach(
+                    function (card) {
+
+                        cardObserver.observe(
+                            card
+                        );
+
+                    }
+                );
+
+
+                reveals.forEach(
+                    function (element) {
+
+                        sectionObserver.observe(
+                            element
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        var visitors = localStorage.getItem("visitorCount");
+
+        if (visitors === null) {
+
+            visitors = 1;
+
+
+        } else {
+
+            visitors = Number(visitors) + 1;
+
+        }
+
+        localStorage.setItem("visitorCount", visitors);
+
+        var visitorElement =
+            document.getElementById("visitorCount");
+
+        if (visitorElement) {
+
+            visitorElement.textContent = visitors;
+
+        }
+
+
+
+        function updateCartCount() {
+
+
+            var cart =
+                JSON.parse(
+                    localStorage.getItem("watchCart")
+                ) || [];
+
+            var count = 0;
+
+            cart.forEach(function (item) {
+
+                count += Number(item.quantity) || 0;
+
+            });
+            var cartElement =
+                document.getElementById("cartCount");
+
+            if (cartElement) {
+
+                cartElement.textContent = count;
+
+            }
+        }
+
+        updateCartCount();
+
+
+
+        var currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+        if (currentPage === "") {
+            currentPage = "index.html";
+        }
+
+        var navLinks =
+            document.querySelectorAll(
+                ".nav-link-custom"
+            );
+
+        navLinks.forEach(function (link) {
+            var linkPage =
+                link.getAttribute("href");
+
+            if (linkPage === currentPage) {
+
+                link.classList.add("active");
+
+            }
+        });
+        function updateDateTime() {
+
+            var now = new Date();
+
+            var timeElement = document.getElementById("currentTime");
+            var dateElement = document.getElementById("currentDate");
+
+            if (timeElement) {
+
+                timeElement.textContent = now.toLocaleTimeString(
+                    "en-PK",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    }
+                );
+
+            }
+
+            if (dateElement) {
+
+                dateElement.textContent = now.toLocaleDateString(
+                    "en-PK",
+                    {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+            }
+
+        }
+
+        updateDateTime();
+
+        setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+
+</html>

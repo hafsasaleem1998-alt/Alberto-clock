@@ -1,0 +1,1358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery - Alberto Watches</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --gold: #c9a227;
+            --dark: #050505;
+            --dark-soft: #080808;
+            --card: #0c0c0c;
+            --white: #ffffff;
+            --muted: #999999;
+            --light-muted: #bdbdbd;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #050505;
+            color: #ffffff;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .navbar {
+            background: #0b0b0b;
+            min-height: 75px;
+            padding: 0;
+            position: relative;
+            z-index: 9999;
+        }
+
+        .navbar .container {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-custom {
+            color: var(--gold) !important;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            margin-right: 7px;
+        }
+
+        .navbar-collapse {
+            flex-grow: 1;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link-custom {
+            color: #fff !important;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            margin: 0 4px;
+            padding: 8px 6px !important;
+            transition: color .3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            color: var(--gold) !important;
+        }
+
+        .navbar-tools {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: 20px;
+            white-space: nowrap;
+            order: 3;
+        }
+
+        .visitor-counter {
+            color: #999;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .eye-icon {
+            color: var(--gold);
+            margin-right: 4px;
+        }
+
+        .cart-counter {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .cart-open-btn {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        .cart-open-btn:hover {
+            color: #fff;
+        }
+
+        .cart-open-btn i {
+            margin-right: 4px;
+        }
+
+        .about-hero {
+            position: relative;
+            min-height: 620px;
+            height: 78vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #050505;
+            z-index: 1;
+        }
+
+        .about-hero iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 177.78vh;
+            height: 56.25vw;
+            min-width: 100%;
+            min-height: 100%;
+            border: 0;
+            opacity: 1;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(1.08);
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                rgba(5, 5, 5, 0.35),
+                rgba(5, 5, 5, 0.82)
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(70px);
+            animation: heroContent 1.2s ease 0.4s forwards;
+        }
+
+        .about-hero h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(55px, 8vw, 105px);
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .about-hero p {
+            font-family: Arial, sans-serif;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .section {
+            padding: 100px 0;
+            background: #050505;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: "Cormorant Garamond", serif;
+            color: #fff;
+            font-size: clamp(42px, 5vw, 62px);
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .divider-gold {
+            width: 75px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 55px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid rgba(201, 162, 39, 0.18);
+            height: 390px;
+            cursor: pointer;
+            transition:
+                transform 0.5s ease,
+                border-color 0.5s ease,
+                box-shadow 0.5s ease;
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(5, 5, 5, 0.7),
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition:
+                transform 0.8s ease,
+                filter 0.6s ease;
+            position: relative;
+            z-index: 0;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(201, 162, 39, 0.75);
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(201, 162, 39, 0.08);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.85);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(70px);
+            transition:
+                opacity 0.9s ease,
+                transform 0.9s ease;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-90px);
+            transition:
+                opacity 0.9s ease,
+                transform 0.9s ease;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(90px);
+            transition:
+                opacity 0.9s ease,
+                transform 0.9s ease;
+        }
+
+        .reveal.show,
+        .reveal-left.show,
+        .reveal-right.show {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        .gallery-card-1 {
+            transition-delay: 0.05s;
+        }
+
+        .gallery-card-2 {
+            transition-delay: 0.15s;
+        }
+
+        .gallery-card-3 {
+            transition-delay: 0.25s;
+        }
+
+        .gallery-card-4 {
+            transition-delay: 0.1s;
+        }
+
+        .gallery-card-5 {
+            transition-delay: 0.2s;
+        }
+
+        .gallery-card-6 {
+            transition-delay: 0.3s;
+        }
+
+        .gallery-card-7 {
+            transition-delay: 0.1s;
+        }
+
+        .gallery-card-8 {
+            transition-delay: 0.2s;
+        }
+
+        .gallery-card-9 {
+            transition-delay: 0.3s;
+        }
+
+        .gallery-card-10 {
+            transition-delay: 0.1s;
+        }
+
+        .gallery-card-11 {
+            transition-delay: 0.2s;
+        }
+
+        .gallery-card-12 {
+            transition-delay: 0.3s;
+        }
+
+        .cart-modal-content {
+            background: #0c0c0c;
+            color: #fff;
+            border: 1px solid rgba(201, 162, 39, 0.4);
+            border-radius: 0;
+        }
+
+        .cart-modal-content .modal-header {
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .cart-modal-content .modal-title {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+        }
+
+        .cart-item-info h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            margin: 0 0 5px;
+        }
+
+        .cart-item-info p {
+            color: var(--gold);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-quantity button {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .cart-quantity button:hover {
+            background: var(--gold);
+            color: #050505;
+        }
+
+        .cart-quantity span {
+            color: #fff;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-total {
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .remove-cart {
+            background: transparent;
+            border: 0;
+            color: #999;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .remove-cart:hover {
+            color: var(--gold);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-cart i {
+            color: var(--gold);
+            font-size: 45px;
+        }
+
+        .empty-cart h4 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            margin-top: 15px;
+        }
+
+        .empty-cart p {
+            color: #999;
+        }
+
+        .cart-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(201, 162, 39, 0.25);
+        }
+
+        .cart-bottom div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-bottom div span {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .cart-bottom strong {
+            color: var(--gold);
+            font-size: 24px;
+        }
+
+        .clear-cart-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .clear-cart-btn:hover {
+            background: var(--gold);
+            color: #050505;
+        }
+
+        .footer {
+            background: #080808;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            padding: 70px 0 25px;
+        }
+
+        .footer-brand {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        .footer p {
+            color: #999;
+            line-height: 1.8;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer a:hover {
+            color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(201, 162, 39, 0.15);
+            margin-top: 45px;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+        }
+
+        .ticker-bar {
+            background: #080808;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            overflow: hidden;
+            height: 35px;
+        }
+
+        .ticker-content {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-scroll {
+            display: block;
+            width: 100%;
+        }
+
+        @keyframes heroContent {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar {
+                min-height: 75px;
+            }
+
+            .navbar .container {
+                min-height: 75px;
+            }
+
+            .navbar-tools {
+                margin-left: auto;
+                gap: 14px;
+            }
+
+            .navbar-collapse {
+                background: #0b0b0b;
+                padding: 15px 0;
+                margin-top: 10px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+                align-items: center;
+            }
+
+            .nav-link-custom {
+                padding: 12px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .visitor-counter {
+                display: none;
+            }
+
+            .about-hero {
+                min-height: 500px;
+                height: 65vh;
+            }
+
+            .gallery-item {
+                height: 260px;
+            }
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr auto;
+                gap: 12px;
+            }
+
+            .cart-item-total {
+                grid-column: 1;
+            }
+
+            .remove-cart {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .cart-bottom {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            .cart-bottom div {
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand-custom {
+                font-size: 24px;
+            }
+
+            .cart-counter {
+                font-size: 11px;
+            }
+
+            .navbar-tools {
+                gap: 10px;
+            }
+        }
+
+        .luxury-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 38px;
+            z-index: 99999;
+            overflow: hidden;
+            background: #050505;
+            border-top: 1px solid #c9a227;
+            border-bottom: 1px solid #c9a227;
+            box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+        }
+
+        .ticker-content {
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+            min-width: max-content;
+            gap: 28px;
+            padding-left: 100%;
+            animation: luxuryTicker 30s linear infinite;
+            color: #c9a227;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .ticker-content span {
+            display: inline-block;
+        }
+
+        @keyframes luxuryTicker {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxury-ticker {
+                height: 34px;
+            }
+
+            .ticker-content {
+                gap: 20px;
+                font-size: 10px;
+                letter-spacing: 1.5px;
+                animation-duration: 24s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand navbar-brand-custom" href="index.html">
+            <span class="logo-icon">&#9201;</span>
+            ALBERTO
+        </a>
+
+        <div class="navbar-tools">
+
+            <button
+                type="button"
+                class="cart-counter cart-open-btn"
+                onclick="openCart()">
+
+                <i class="bi bi-bag"></i>
+                Cart:
+                <span id="cartCount">0</span>
+
+            </button>
+
+            <span class="visitor-counter">
+                <span class="eye-icon">&#128065;</span>
+                Visitors:
+                <span id="visitorCount">0</span>
+            </span>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navMain"
+                aria-controls="navMain"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="navMain">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="product.html">Products</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="technology.html">Technology</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom active" href="gallery.html">Gallery</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="store-locator.html">Store Locator</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="support.html">Support</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom" href="about.html">About</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+<section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="watches.mp4" type="video/mp4">
+    </video>
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <h2 class="section-title reveal">
+            Watch Gallery
+        </h2>
+
+        <p class="section-subtitle reveal">
+            Browse Our Collection
+        </p>
+
+        <div class="divider-gold"></div>
+
+        <div class="row g-3">
+
+            <div class="col-md-4 col-6 reveal-left gallery-card-1">
+                <div class="gallery-item">
+                    <img src="pkprestige.jpg" alt="Patek Philippe">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal gallery-card-2">
+                <div class="gallery-item">
+                    <img src="citizenpremium.jpg" alt="Citizen">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-right gallery-card-3">
+                <div class="gallery-item">
+                    <img src="albertorosegold.jpg" alt="Alberto Chronos">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-left gallery-card-4">
+                <div class="gallery-item">
+                    <img src="rolexprestige.jpg" alt="Rolex">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal gallery-card-5">
+                <div class="gallery-item">
+                    <img src="omega2elite.jpg" alt="Omega">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-right gallery-card-6">
+                <div class="gallery-item">
+                    <img src="pkroyal2.jpg" alt="Royal">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-left gallery-card-7">
+                <div class="gallery-item">
+                    <img src="albertovintage.jpg" alt="Alberto Vintage">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal gallery-card-8">
+                <div class="gallery-item">
+                    <img src="casiopremium.jpg" alt="Casio Premium">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-right gallery-card-9">
+                <div class="gallery-item">
+                    <img src="mkelite2.jpg" alt="Michael Kors">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-left gallery-card-10">
+                <div class="gallery-item">
+                    <img src="cartierprestige.jpg" alt="Cartier">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal gallery-card-11">
+                <div class="gallery-item">
+                    <img src="casio3royal.jpg" alt="Casio Royal">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 reveal-right gallery-card-12">
+                <div class="gallery-item">
+                    <img src="mkrose.jpg" alt="Michael Kors Rose">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="modal fade" id="cartModal" tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content cart-modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    <i class="bi bi-bag"></i>
+                    Your Cart
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div id="cartBody"></div>
+
+                <div class="cart-bottom">
+
+                    <div>
+                        <span>Total</span>
+                        <strong id="cartTotal">$0</strong>
+                    </div>
+
+                    <button
+                        class="clear-cart-btn"
+                        onclick="clearCart()">
+                        Clear Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="footer-brand mb-2">
+                    &#9201; ALBERTO
+                </div>
+
+                <p>
+                    Alberto Watch Company - offering the finest selection
+                    of luxury timepieces with first-class service since 1947.
+                </p>
+
+            </div>
+
+            <div class="col-md-2">
+
+                <h5>Quick Links</h5>
+
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="technology.html">Technology</a>
+                <a href="gallery.html">Gallery</a>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h5>Company</h5>
+
+                <a href="about.html">About Us</a>
+                <a href="store-locator.html">Store Locator</a>
+                <a href="support.html">Support</a>
+                <a href="support.html">Contact Us</a>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h5>
+                    Contact
+                </h5>
+
+                <p style="font-size:0.9rem">
+
+                    Dolmen Mall Clifton<br>
+                    Karachi, Pakistan<br>
+
+                    <a href="mailto:info@albertoclocks.com">
+                        info@albertoclocks.com
+                    </a>
+
+                    +92 21 111 362 111
+
+                </p>
+
+                <p style="font-size:0.9rem; margin-top:15px;">
+
+                    <strong style="color:#c9a227;">
+                        Upcoming Event
+                    </strong><br>
+
+                    Alberto Luxury Watch Exhibition<br>
+                    Dolmen Mall Clifton, Karachi<br>
+                    Experience timeless luxury and discover our exclusive collection.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2026 Alberto Clocks. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+<div class="luxury-ticker">
+
+    <div class="ticker-content">
+
+        <span>ALBERTO WATCHES</span>
+        <span>•</span>
+
+        <span>TIME: <strong id="currentTime">--:--:--</strong></span>
+        <span>•</span>
+
+        <span>DATE: <strong id="currentDate">--/--/----</strong></span>
+        <span>•</span>
+
+        <span>TIMELESS LUXURY</span>
+        <span>•</span>
+
+        <span>DOLMEN MALL CLIFTON, KARACHI</span>
+        <span>•</span>
+
+        <span>UPCOMING LUXURY WATCH EXHIBITION</span>
+        <span>•</span>
+
+        <span>EXCEPTIONAL CRAFTSMANSHIP</span>
+        <span>•</span>
+
+        <span>ALBERTO WATCHES</span>
+        <span>•</span>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+var visitors = localStorage.getItem("visitorCount");
+
+if (visitors === null) {
+    visitors = 1;
+} else {
+    visitors = Number(visitors) + 1;
+}
+
+localStorage.setItem("visitorCount", visitors);
+
+var visitorElement = document.getElementById("visitorCount");
+
+if (visitorElement) {
+    visitorElement.textContent = visitors;
+}
+
+var siteCart = JSON.parse(localStorage.getItem("watchCart")) || [];
+
+siteCart = siteCart.map(function(item) {
+    return {
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity || 1
+    };
+});
+
+localStorage.setItem("watchCart", JSON.stringify(siteCart));
+
+function updateCartCount() {
+    var count = 0;
+
+    siteCart.forEach(function(item) {
+        count += Number(item.quantity) || 1;
+    });
+
+    var cartElement = document.getElementById("cartCount");
+
+    if (cartElement) {
+        cartElement.textContent = count;
+    }
+}
+
+function openCart() {
+    updateCartCount();
+    renderCart();
+
+    var cartModal = new bootstrap.Modal(
+        document.getElementById("cartModal")
+    );
+
+    cartModal.show();
+}
+
+function renderCart() {
+    var body = document.getElementById("cartBody");
+    var totalElement = document.getElementById("cartTotal");
+
+    if (!body || !totalElement) {
+        return;
+    }
+
+    if (siteCart.length === 0) {
+        body.innerHTML = `
+            <div class="empty-cart">
+                <i class="bi bi-bag"></i>
+                <h4>Your Cart is Empty</h4>
+                <p>Add your favorite Alberto timepieces from the Products page.</p>
+            </div>
+        `;
+
+        totalElement.textContent = "$0";
+        return;
+    }
+
+    body.innerHTML = "";
+    var total = 0;
+
+    siteCart.forEach(function(item, index) {
+
+        var priceNumber = parseFloat(
+            String(item.price).replace(/[^0-9.]/g, "")
+        ) || 0;
+
+        var itemTotal = priceNumber * item.quantity;
+
+        total += itemTotal;
+
+        body.innerHTML += `
+            <div class="cart-item">
+
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.price}</p>
+                </div>
+
+                <div class="cart-quantity">
+
+                    <button onclick="decreaseCartItem(${index})">
+                        −
+                    </button>
+
+                    <span>${item.quantity}</span>
+
+                    <button onclick="increaseCartItem(${index})">
+                        +
+                    </button>
+
+                </div>
+
+                <div class="cart-item-total">
+                    $${itemTotal.toLocaleString()}
+                </div>
+
+                <button
+                    class="remove-cart"
+                    onclick="removeCartItem(${index})">
+
+                    <i class="bi bi-x-lg"></i>
+
+                </button>
+
+            </div>
+        `;
+    });
+
+    totalElement.textContent = "$" + total.toLocaleString();
+}
+
+function increaseCartItem(index) {
+    siteCart[index].quantity++;
+    saveCart();
+}
+
+function decreaseCartItem(index) {
+    if (siteCart[index].quantity > 1) {
+        siteCart[index].quantity--;
+    } else {
+        siteCart.splice(index, 1);
+    }
+
+    saveCart();
+}
+
+function removeCartItem(index) {
+    siteCart.splice(index, 1);
+    saveCart();
+}
+
+function clearCart() {
+    siteCart = [];
+    saveCart();
+}
+
+function saveCart() {
+    localStorage.setItem(
+        "watchCart",
+        JSON.stringify(siteCart)
+    );
+
+    updateCartCount();
+    renderCart();
+}
+
+var currentPage = window.location.pathname.split("/").pop();
+
+if (currentPage === "") {
+    currentPage = "index.html";
+}
+
+var navLinks = document.querySelectorAll(".nav-link-custom");
+
+navLinks.forEach(function(link) {
+
+    var linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+        link.classList.add("active");
+    }
+
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    var elements = document.querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right"
+    );
+
+    var observer = new IntersectionObserver(
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    elements.forEach(function(element) {
+        observer.observe(element);
+    });
+
+    updateCartCount();
+
+});
+
+window.addEventListener("storage", function(event) {
+
+    if (event.key === "watchCart") {
+
+        siteCart = JSON.parse(
+            localStorage.getItem("watchCart")
+        ) || [];
+
+        siteCart = siteCart.map(function(item) {
+
+            return {
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity || 1
+            };
+
+        });
+
+        updateCartCount();
+        renderCart();
+
+    }
+
+});
+
+function updateDateTime() {
+
+    var now = new Date();
+
+    var timeElement = document.getElementById("currentTime");
+    var dateElement = document.getElementById("currentDate");
+
+    if (timeElement) {
+
+        timeElement.textContent = now.toLocaleTimeString(
+            "en-PK",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }
+        );
+
+    }
+
+    if (dateElement) {
+
+        dateElement.textContent = now.toLocaleDateString(
+            "en-PK",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+}
+
+updateDateTime();
+
+setInterval(updateDateTime, 1000);
+</script>
+
+</body>
+</html>
